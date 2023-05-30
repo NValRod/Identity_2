@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/responsive.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" /> 
+    <link href="~/Content/all.css" rel="stylesheet" />
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+</head>
+<body>
+   
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#"> <img src="@Url.Content("~/Content/images/Full-FE-Logo.png")" /> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tools</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="@Url.Content("~/Home/GetProjectCodes")">Get Project Codes</a>
+
+                        @if (ViewBag.roleUSer != null)
+                        {
+                            if (ViewBag.roleUser.ToString() == "1")
+                            {
+                                <a class="dropdown-item" href="@Url.Content("~/Identity_Users_roles/Index")">Users Admin</a>
+                            }
+                        }
+
+                    </div>  
+                </li>
+            </ul>
+
+            <ul class="logout-cnt">
+                <li style="font-weight:600; font-size:1.15em">User: @Session["userName"]</li>
+            </ul>
+
+            <ul class="logout-cnt">
+                <li> <a @Html.ActionLink("Logout ", "Logout", "Account")></a> </li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <div class="body-content">
+        @RenderBody()
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/sweetalert2@10.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+    <script src="~/Scripts/jszip.min.js"></script>
+    <script src="~/Scripts/AppJS.js"></script>
+    <script src="https://kit.fontawesome.com/b58f639add.js" crossorigin="anonymous"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

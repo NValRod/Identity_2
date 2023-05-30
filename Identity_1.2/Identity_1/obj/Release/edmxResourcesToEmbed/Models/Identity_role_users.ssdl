@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="analysts_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Identity_Users_roles">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userStatus" Type="bit" Nullable="false" />
+    <Property Name="userRed" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="IdRol" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="role_identity_nv">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descript" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="fk_role">
+    <End Role="role_identity_nv" Type="Self.role_identity_nv" Multiplicity="1" />
+    <End Role="Identity_Users_roles" Type="Self.Identity_Users_roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role_identity_nv">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="Identity_Users_roles">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="analysts_dbModelStoreContainer">
+    <EntitySet Name="Identity_Users_roles" EntityType="Self.Identity_Users_roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="role_identity_nv" EntityType="Self.role_identity_nv" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_role" Association="Self.fk_role">
+      <End Role="role_identity_nv" EntitySet="role_identity_nv" />
+      <End Role="Identity_Users_roles" EntitySet="Identity_Users_roles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

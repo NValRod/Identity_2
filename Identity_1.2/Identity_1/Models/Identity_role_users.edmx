@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="analysts_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Identity_Users_roles">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userStatus" Type="bit" Nullable="false" />
+          <Property Name="userRed" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdRol" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role_identity_nv">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descript" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="fk_role">
+          <End Role="role_identity_nv" Type="Self.role_identity_nv" Multiplicity="1" />
+          <End Role="Identity_Users_roles" Type="Self.Identity_Users_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role_identity_nv">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Identity_Users_roles">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="analysts_dbModelStoreContainer">
+          <EntitySet Name="Identity_Users_roles" EntityType="Self.Identity_Users_roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role_identity_nv" EntityType="Self.role_identity_nv" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_role" Association="Self.fk_role">
+            <End Role="role_identity_nv" EntitySet="role_identity_nv" />
+            <End Role="Identity_Users_roles" EntitySet="Identity_Users_roles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="analysts_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Identity_Users_roles">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userStatus" Type="Boolean" Nullable="false" />
+          <Property Name="userRed" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="role_identity_nv" Relationship="Self.fk_role" FromRole="Identity_Users_roles" ToRole="role_identity_nv" />
+        </EntityType>
+        <EntityType Name="role_identity_nv">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descript" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Identity_Users_roles" Relationship="Self.fk_role" FromRole="role_identity_nv" ToRole="Identity_Users_roles" />
+        </EntityType>
+        <Association Name="fk_role">
+          <End Role="role_identity_nv" Type="Self.role_identity_nv" Multiplicity="1" />
+          <End Role="Identity_Users_roles" Type="Self.Identity_Users_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role_identity_nv">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Identity_Users_roles">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="analysts_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Identity_Users_roles" EntityType="Self.Identity_Users_roles" />
+          <EntitySet Name="role_identity_nv" EntityType="Self.role_identity_nv" />
+          <AssociationSet Name="fk_role" Association="Self.fk_role">
+            <End Role="role_identity_nv" EntitySet="role_identity_nv" />
+            <End Role="Identity_Users_roles" EntitySet="Identity_Users_roles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="analysts_dbModelStoreContainer" CdmEntityContainer="analysts_dbEntities">
+          <EntitySetMapping Name="Identity_Users_roles">
+            <EntityTypeMapping TypeName="analysts_dbModel.Identity_Users_roles">
+              <MappingFragment StoreEntitySet="Identity_Users_roles">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+                <ScalarProperty Name="userRed" ColumnName="userRed" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role_identity_nv">
+            <EntityTypeMapping TypeName="analysts_dbModel.role_identity_nv">
+              <MappingFragment StoreEntitySet="role_identity_nv">
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="descript" ColumnName="descript" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

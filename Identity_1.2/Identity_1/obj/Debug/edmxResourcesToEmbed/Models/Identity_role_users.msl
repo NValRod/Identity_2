@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="analysts_dbModelStoreContainer" CdmEntityContainer="analysts_dbEntities">
+    <EntitySetMapping Name="Identity_Users_roles">
+      <EntityTypeMapping TypeName="analysts_dbModel.Identity_Users_roles">
+        <MappingFragment StoreEntitySet="Identity_Users_roles">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+          <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+          <ScalarProperty Name="userRed" ColumnName="userRed" />
+          <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="role_identity_nv">
+      <EntityTypeMapping TypeName="analysts_dbModel.role_identity_nv">
+        <MappingFragment StoreEntitySet="role_identity_nv">
+          <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+          <ScalarProperty Name="descript" ColumnName="descript" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

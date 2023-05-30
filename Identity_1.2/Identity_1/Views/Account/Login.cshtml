@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="main_cnt">
+    <h1>Welcome to ....</h1>
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form_log" }))
+    {
+
+
+        <h2>Enter your user and password</h2>
+
+        <div class="items-log_cnt">
+            <label>Domain</label>
+
+            <select name="domain" class="drop_login" required>
+                <option value="">Domain</option>
+                <option value="APC">APC</option>
+                <option value="EMEA">EMEA</option>
+                <option value="LAT">LAT</option>
+                <option value="NAC">NAC</option>
+                <option value="AMER">L-SYKES AMER</option>
+                <option value="APAC">L-SYKES APAC</option>
+                <option value="BLUE_EMEA">L-SYKES EMEA</option>
+            </select>
+        </div>
+
+        <div class="items-log_cnt">
+            <label for="userN">User</label>
+            <input type="text" id="userN" name="userN" placeholder="jims" required>
+        </div>
+
+        <div class="items-log_cnt">
+            <label>Password</label>
+            <input type="password" id="userP" name="userP" required>
+        </div>
+
+
+        <button type="submit" class="btn-general" value="Login">log in</button>
+
+    }
+
+
+    @if (ViewBag.error != null)
+    {
+        if (ViewBag.error.Length > 0)
+        {
+            <div style="width: 10em; z-index: 4">
+                <h3 class="alert alert-danger" ><strong>Error:</strong> @ViewBag.error</h3>
+            </div>
+
+        }
+    }
+
+</div>
+

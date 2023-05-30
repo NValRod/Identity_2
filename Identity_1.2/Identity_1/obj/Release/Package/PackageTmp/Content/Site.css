@@ -1,0 +1,516 @@
+﻿body {
+    /*padding-top: 50px;*/
+    /*padding-bottom: 20px;*/
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* GENERALS */
+
+:root {
+    --fe_blue: #4949f9;
+    --fe_green: #8bf0bb;
+    --fe_navy: #09092d;
+    --fe_gray: #B0B0CD;
+    --fe_white: #fcfcfc;
+}
+
+a{
+    text-decoration:none;
+    color: var(--fe_white);
+}
+
+a:hover{
+    color: var(--fe_white);
+    text-decoration:none;
+}
+
+li{
+    list-style:none;
+}
+
+/* CUSTOM RULES */
+
+.hidden {
+    display:none;
+}
+
+#view_title {
+    min-height: 60px;
+}
+
+
+label {
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+
+/* ------- Navbar ------- */
+
+
+.navbar {
+    background-color: var(--fe_blue) !important;
+    color: var(--fe_white);
+}
+
+.navbar-nav .nav-link {
+    color: var(--fe_white);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.navbar-brand img {
+    width: 8em;
+    margin-left: 4em;
+}
+
+.logout-cnt{
+    display:flex;
+    padding-top:15px;
+    margin-right:2.5em;
+}
+
+.logout-cnt li a{
+    font-weight:600;
+    font-size:1.3em;
+    border-left: 5px solid var(--fe_green);
+    padding-left:5px;
+}
+
+/* ------- Buttons ------- */
+.btn-general {
+    width: 12em;
+    height: 2.5em;
+    background-color: var(--fe_green);
+    color: var(--fe_navy);
+    border-radius: 20px;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-general:hover {
+    background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1));
+}
+
+
+.btn-clear {
+    background-color: var(--fe_gray);
+    color: var(--fe_white);
+    flex-wrap: nowrap;
+}
+
+.btns-search-cnt {
+    display: flex;
+    gap: 3em;
+    flex-wrap: nowrap !important;
+    margin-top: 3em;
+    margin-left: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: white !important;
+    border: none;
+    background-color: #585858;
+    background: none !important;
+}
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: white !important;
+    border: none !important;
+    background-color: transparent;
+}
+
+
+
+div.dt-buttons {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+
+.buttons-excel {
+    border-radius: 23px !important;
+    width: 8em;
+    background-color: green !important;
+    border: 1px solid var(--fe_gray) !important;
+    text-align: center;
+}
+
+
+/* ------- Form login ------- */
+
+
+
+.main_cnt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-image: url("images/cover-login.png");
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.main_cnt h1 {
+    color: var(--fe_white);
+    font-size: 4.5em;
+    font-weight: 800;
+    padding: 10px;
+    margin-top: -1em;
+    padding-bottom:1em;
+}
+
+.main_cnt form {
+    background-color: var(--fe_white);
+    height: 31.5em;
+    width: 23.8em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.form_log h2 {
+    font-size: 1.3em;
+    margin-top: 1em;
+    font-weight:600;
+    color: var(--fe_navy);
+}
+
+.form_log label{
+    font-weight:500;
+    color: var(--fe_navy);
+    margin-bottom:-.5px;
+}
+
+.form_log input {
+    width: 29vh;
+    height: 1.9em;
+    font-size: 1em;
+    padding-left: .6em;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 11px;
+    border: 1px solid var(--fe_gray);
+}
+
+
+.form_log input:focus-visible{
+    border: .5px solid var(--fe_green);
+    outline: var(--fe_green);
+}
+
+.items-log_cnt {
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form_log button{
+    margin-top:1em;
+}
+
+
+.form_log p{
+    color:red;
+}
+
+form-control {
+    color: var(--fe_navy);
+    background-color: var(--fe_white);
+    font-weight: 500;
+}
+
+
+.drop_login {
+    width: 29vh;
+    border-radius: 11px;
+    padding: 4px;
+    border: 1px solid var(--fe_gray);
+}
+
+
+.drop_login:focus-visible {
+    border: .5px solid var(--fe_green);
+    outline: var(--fe_green);
+}
+
+.drop_login select{
+    border-radius:11px;
+}
+
+/* ---------------------------------------- */
+
+
+div .bg-primary {
+    background-color: var(--fe_blue) !important;
+}
+
+.title-cnt{
+    background-color:var(--fe_white);
+}
+
+
+.hidden {
+    display: none;
+}
+
+.full-height {
+    height: calc(100vh - 173px);
+    overflow-y: auto;
+    background-color:var(--fe_blue);
+    background-image: url('images/FoundEver_cover.png');
+    background-size: cover;
+}
+
+
+control-label {
+    text-transform: capitalize;
+}
+
+
+
+@media (min-width: 1200px) {
+    .container, .container-sm, .container-md, .container-lg, .container-xl {
+        max-width: 105em;
+    }
+}
+
+/* Media query for the scroll */
+@media only screen and (max-width: 1368px) {
+    .full-height {
+        height: calc(100vh - 173.5px);
+    }
+}
+
+
+@media only screen and (max-width: 1600px) {
+    .full-height {
+        height: calc(100vh - 182px);
+    }
+}
+
+
+@media only screen and (max-width: 2600px) {
+    .full-height {
+        height: calc(100vh - 182px);
+    }
+}
+
+
+.swal2-styled.swal2-confirm {
+    width: 12em;
+    height: 2.5em;
+    background-color: var(--fe_green) !important;
+    color: var(--fe_navy) !important;
+    border-radius: 20px !important;
+    font-weight: 600;
+    border: none !important;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.swal2-styled:focus{
+    box-shadow:none !important;
+}
+
+
+
+.title{
+    font-size:3em;
+    font-weight:600;
+    margin-top:1em;
+}
+
+.form-control{
+    border-radius:10px;
+}
+
+input[type="radio"], input[type="checkbox"]{
+    width:1.8em;
+}
+
+.form-cnt {
+    margin-top: -5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.firts-cnt {
+    display: flex !important;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.teams-cnt {
+    display: flex;
+    gap: 4em;
+    margin-left: 3em;
+}
+
+.team-group{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0.5em;
+    display: inline-block;
+    width: 35em !important;
+    border-radius: 10px;
+    padding: 13px;
+    height: 2em;
+    border: 1px solid var(--fe_gray);
+}
+
+div.dataTables_wrapper div.dataTables_filter input:focus-visible{
+    border:none !important;
+}
+
+[type="search"] {
+    outline-offset: 0;
+    -webkit-appearance: none;
+}
+
+
+div.dataTables_wrapper div.dataTables_length select {
+    width: 75px;
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px solid var(--fe_gray);
+    height:2em;
+}
+
+div.dataTables_wrapper div.dataTables_length label {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.table-hover tbody tr:hover {
+    color: var(--fe_navy);
+    background-color: #e7fbf1;
+}
+
+thead{
+    background: var(--fe_blue);
+    font-weight: 600;
+    color: var(--fe_white);
+    text-align: center;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: var(--fe_white);
+    background-color: var(--fe_blue);
+    border-color: var(--fe_navy);
+    font-weight:600;
+}
+
+
+
+.bg-primary .dropdown-menu {
+    background-color: var(--fe_white);
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+
+}
+
+.bg-primary .dropdown-menu .dropdown-item,
+.bg-primary .dropdown-menu .dropdown-item:focus {
+    color: var(--fe_navy);
+}
+
+.dropdown-item:hover {
+    background-color: var(--fe_blue) !important;
+    background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1));
+    color: var(--fe_white);
+}
+
+
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+    right: 1.4em !important;
+}
+
+table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
+    right: 1em !important;
+}
+
+
+.table-user-roles{
+    background-color:var(--fe_blue);
+    color:var(--fe_white);
+}
+
+.table-user-roles:hover{
+    background-color:var(--fe_blue) !important;
+    color:var(--fe_white)!important;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.btn-edit {
+    width: 7em;
+    background-color: #e9c46a;
+    font-size:15px;
+    color:var(--fe_white);
+}
+
+.btn-delete {
+    width: 7em;
+    background-color: #d62828;
+    font-size: 15px;
+}
+
+
+.btn-add {
+    background-color: #4c956c;
+    margin:2em 0;
+}

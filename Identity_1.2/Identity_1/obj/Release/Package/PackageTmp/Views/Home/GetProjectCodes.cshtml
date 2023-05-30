@@ -1,0 +1,93 @@
+﻿@model Identity_1.Models.ProjectCodes
+
+@{
+    /**/
+
+    ViewBag.Title = "GetProjectCodes";
+}
+
+
+<div class="row align-items-end bg-primary" id="view_title">
+    <div class="col-12">
+        <h2 class="text-white text-center title">Get Project Codes</h2>
+    </div>
+</div>
+
+
+<div id="form_container" class="row full-height pt-2">
+    <div class="col-6 firts-cnt">
+        @using (Html.BeginForm("GetProjectCodes", "Home", FormMethod.Post, new { @class = "form-cnt" }))
+        {
+
+
+
+            <div class="form-row">
+                <div class="form-group col-4">
+                    @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
+                    @Html.EditorFor(x => x.sf_country, null, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="form-group col-4">
+                    @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
+                    @Html.EditorFor(x => x.site_name, null, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="form-group col-4">
+                    @Html.LabelFor(x => x.parent_client_name, "client", htmlAttributes: new { @class = "control-label text-white" })
+                    @Html.EditorFor(x => x.parent_client_name, null, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="form-group col-4">
+                    @Html.LabelFor(x => x.sf_project_code, "project", htmlAttributes: new { @class = "control-label text-white" })
+                    @Html.EditorFor(x => x.sf_project_code, null, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="teams-cnt">
+                    <div class="form-group team-group">
+                        @Html.LabelFor(x => x.blue, "team Blue", htmlAttributes: new { @class = "control-label text-white" })
+                        @Html.EditorFor(x => x.blue, null, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group team-group">
+                        @Html.LabelFor(x => x.red, "team Red", htmlAttributes: new { @class = "control-label text-white" })
+                        @Html.EditorFor(x => x.red, null, new { htmlAttributes = new { @class = "form-control rounded" } })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-row btns-search-cnt">
+                <div class="form-group col-6">
+                    <button type="button" id="clear_form" class="btn-general btn-clear"><i class="fa-solid fa-brush fa-sm"></i>Clear</button>
+                </div>
+                <div class="form-group col-6">
+                    <submit class="btn-general" id="search_btn"><i class="fa-solid fa-magnifying-glass"></i>Search</submit>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+@* Tables *@
+
+<div id="table_container" class="row pt-2 pb-5 hidden">
+    <div class="col-12">
+        <button type="button" id="reset_search" class="btn-general"><i class="fa-solid fa-rotate-left fa-sm"></i>Back </button>
+        <hr />
+
+
+        <table class="table table-bordered table-hover table-sm" id="dataTable">
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Company Description</th>
+                    <th>Country</th>
+                    <th>Site Name</th>
+                    <th>Department Name</th>
+                    <th>Lob Name</th>
+                    <th>Project Code</th>
+                    <th>Blue</th>
+                    <th>Red</th>
+                    <th>Oracle Site ID</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
