@@ -47,6 +47,16 @@ li{
     list-style:none;
 }
 
+
+.form-control:focus {
+    color: #495057;
+    background-color: transparent;
+    border: 2.5px solid var(--fe_gray);
+    border-color: var(--fe_gray);
+    outline: 0;
+    box-shadow: none;
+}
+
 /* CUSTOM RULES */
 
 .hidden {
@@ -96,7 +106,16 @@ label {
     padding-left:5px;
 }
 
+
+.dropdown-item:hover {
+    background-color: var(--fe_blue) !important;
+    background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1));
+    color: var(--fe_white);
+}
+
+
 /* ------- Buttons ------- */
+
 .btn-general {
     width: 12em;
     height: 2.5em;
@@ -167,6 +186,29 @@ div.dt-buttons {
 }
 
 
+.btn-edit {
+    width: 7em;
+    background-color: #e9c46a;
+    font-size: 15px;
+    color: var(--fe_white);
+}
+
+.btn-delete {
+    width: 7em;
+    background-color: #d62828;
+    font-size: 15px;
+    color: var(--fe_white)
+}
+
+
+.btn-add {
+    background-color: #4c956c;
+    margin: 2em 0;
+    color: var(--fe_white)
+}
+
+
+
 /* ------- Form login ------- */
 
 
@@ -194,6 +236,7 @@ div.dt-buttons {
     padding-bottom:1em;
 }
 
+
 .main_cnt form {
     background-color: var(--fe_white);
     height: 31.5em;
@@ -205,6 +248,8 @@ div.dt-buttons {
     align-items: center;
     border-radius: 10px;
 }
+
+
 
 .form_log h2 {
     font-size: 1.3em;
@@ -264,6 +309,7 @@ form-control {
     border-radius: 11px;
     padding: 4px;
     border: 1px solid var(--fe_gray);
+    cursor: pointer;
 }
 
 
@@ -276,8 +322,8 @@ form-control {
     border-radius:11px;
 }
 
-/* ---------------------------------------- */
 
+/* ------- Tables ------- */
 
 div .bg-primary {
     background-color: var(--fe_blue) !important;
@@ -303,35 +349,6 @@ div .bg-primary {
 
 control-label {
     text-transform: capitalize;
-}
-
-
-
-@media (min-width: 1200px) {
-    .container, .container-sm, .container-md, .container-lg, .container-xl {
-        max-width: 105em;
-    }
-}
-
-/* Media query for the scroll */
-@media only screen and (max-width: 1368px) {
-    .full-height {
-        height: calc(100vh - 173.5px);
-    }
-}
-
-
-@media only screen and (max-width: 1600px) {
-    .full-height {
-        height: calc(100vh - 182px);
-    }
-}
-
-
-@media only screen and (max-width: 2600px) {
-    .full-height {
-        height: calc(100vh - 182px);
-    }
 }
 
 
@@ -465,11 +482,6 @@ thead{
     color: var(--fe_navy);
 }
 
-.dropdown-item:hover {
-    background-color: var(--fe_blue) !important;
-    background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1));
-    color: var(--fe_white);
-}
 
 
 table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
@@ -496,21 +508,111 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
     vertical-align: middle;
 }
 
-.btn-edit {
-    width: 7em;
-    background-color: #e9c46a;
-    font-size:15px;
-    color:var(--fe_white);
-}
 
-.btn-delete {
-    width: 7em;
-    background-color: #d62828;
-    font-size: 15px;
+/* ------- CRUDs style ------- */
+
+
+.crud-cnt{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
 
 
-.btn-add {
-    background-color: #4c956c;
-    margin:2em 0;
+.form-create{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
+
+.form-group-modal {
+    margin-left: 6em;
+    width: 33em;
+}
+
+
+.form-group-modal-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3em;
+    margin-left: 2em;
+}
+
+.modal-body{
+    padding:2em 1em;
+}
+
+.modal-content{
+    border-radius:11px;
+}
+/* ------- Media querys keep it at the bottom pls ------- */
+/* Media query for the scroll */
+@media only screen and (max-width: 1368px) {
+    .full-height {
+        height: calc(100vh - 173.5px);
+    }
+}
+
+
+@media only screen and (max-width: 1600px) {
+    .full-height {
+        height: calc(100vh - 182px);
+    }
+}
+
+
+@media only screen and (max-width: 2600px) {
+    .full-height {
+        height: calc(100vh - 182px);
+    }
+}
+
+
+/* Media query for the login */
+
+@media only screen and (max-width: 1368px) {
+    .main_cnt form {
+        background-color: var(--fe_white);
+        height: 29.5em;
+        width: 21.8em;
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .main_cnt h1 {
+        color: var(--fe_white);
+        font-size: 3.5em;
+        font-weight: 800;
+        padding: 10px;
+        margin-top: 0em;
+        padding-bottom: 27px;
+    }
+
+    .drop_login {
+        width: 40vh;
+    }
+
+    .form_log input {
+        width: 40vh;
+    }
+
+    .form_log h2 {
+        font-size: 1.1em;
+    }
+}
+
+/* Media query for the tables */
+
+@media (min-width: 1200px) {
+    .container, .container-sm, .container-md, .container-lg, .container-xl {
+        max-width: 105em;
+    }
+}
+

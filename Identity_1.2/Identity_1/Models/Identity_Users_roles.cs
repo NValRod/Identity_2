@@ -11,14 +11,21 @@ namespace Identity_1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Identity_Users_roles
     {
         public int userId { get; set; }
+
+        [Required]
         public string userName { get; set; }
+        [Required]
         public string userEmail { get; set; }
+        [Required]
         public bool userStatus { get; set; }
+        [Required]
         public string userRed { get; set; }
+        [Required]
         public int IdRol { get; set; }
     
         public virtual role_identity_nv role_identity_nv { get; set; }

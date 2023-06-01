@@ -5,8 +5,9 @@
     "\\Identity_1.2\\Identity_1",
     "\\Identity_1.2\\Identity_1\\Controllers",
     "\\Identity_1.2\\Identity_1\\Views",
-    "\\Identity_1.2\\Identity_1\\Views\\Account"
+    "\\Identity_1.2\\Identity_1\\Views\\Account",
+    "\\Identity_1.2\\Identity_1\\Views\\Identity_Users_roles"
   ],
-  "SelectedNode": "\\Identity_1.2\\Identity_1\\Views\\Account\\Login.cshtml",
+  "SelectedNode": "\\Identity_1.2\\Identity_1\\Views\\Identity_Users_roles\\Create.cshtml",
   "PreviewInSolutionExplorer": false
 }

@@ -59,7 +59,7 @@ $('#search_btn').click(function (e) {
         Swal.fire({
             title: 'Loading Results',
             //html: 'I will close in <b></b> milliseconds.',
-            timer: 3000,
+            timer: 3500,
             timerProgressBar: true,
             didOpen: () => {
                 Swal.showLoading();                
@@ -194,3 +194,36 @@ $(document).ready(function () {
     setRequired();
     table = $('#dataTable').DataTable();
 });
+
+
+document.getElementById('btn-modal').addEventListener('click', function () {
+
+
+    var URL = IdentityUsersRole_edit_Url;
+
+    $("#modal-body-content").load(URL, function (status) {
+
+
+
+        var contentStatus = status;
+        if (contentStatus === "success") {
+
+        }
+        else {
+            alert(contentStatus);
+        }
+    });
+});
+
+
+
+function DisableBackButton() {
+    window.history.forward()
+}
+
+DisableBackButton();
+
+window.onload = DisableBackButton;
+window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+window.onunload = function () { void (0) }
+

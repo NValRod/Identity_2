@@ -48,13 +48,15 @@ namespace Identity_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "userId,userName,userEmail,userPassword,userStatus,userRed,IdRol")] Identity_Users_roles identity_Users_roles)
         {
+
+
             if (ModelState.IsValid)
             {
                 db.Identity_Users_roles.Add(identity_Users_roles);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
 
+            }
             ViewBag.IdRol = new SelectList(db.role_identity_nv, "IdRol", "descript", identity_Users_roles.IdRol);
             return View(identity_Users_roles);
         }

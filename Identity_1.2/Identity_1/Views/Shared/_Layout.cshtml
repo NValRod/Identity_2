@@ -3,19 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/responsive.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" /> 
+    <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/all.css" rel="stylesheet" />
     <link href="~/Content/animate.min.css" rel="stylesheet" />
 </head>
 <body>
-   
-    
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#"> <img src="@Url.Content("~/Content/images/Full-FE-Logo.png")" /> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +36,7 @@
                             }
                         }
 
-                    </div>  
+                    </div>
                 </li>
             </ul>
 
@@ -46,11 +45,24 @@
             </ul>
 
             <ul class="logout-cnt">
-                <li> <a @Html.ActionLink("Logout ", "Logout", "Account")></a> </li>
+                <li> @Html.ActionLink("Logout ", "Logout", "Account") </li>
             </ul>
 
         </div>
     </nav>
+
+
+    @*Modals*@
+
+    <div class="modal fade" id="overallModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body" id="modal-body-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="body-content">
@@ -67,8 +79,66 @@
     <script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
     <script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
     <script src="~/Scripts/jszip.min.js"></script>
-    <script src="~/Scripts/AppJS.js"></script>
     <script src="https://kit.fontawesome.com/b58f639add.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/AppJS.js"></script>
     @RenderSection("scripts", required: false)
+
+<script>
+
+    // Create Modal
+    function pushModalCreate() {
+        $('#overallModal').modal();
+        var partialView_AddOrEditResignationDetail_URL = '@Url.Content("~/Identity_Users_roles/Create")';
+
+
+
+        $("#modal-body-content").load(partialView_AddOrEditResignationDetail_URL).then(function () {
+            alert("Success!");
+        }).catch(function (error) {
+            alert("Error: " + error);
+        });
+    }
+    $("#btn-modal").click(function () {
+        pushModalCreate();
+    });
+
+
+    // Edit Modal
+    $(document).ready(function() {
+      $("#edit-btn").click(function(e) {
+        e.preventDefault();
+        var userId = $(this).data("user-id");
+        var editUrl = '@Url.Action("Edit", new { id = "__userId__" })';
+
+        editUrl = editUrl.replace("__userId__", userId);
+
+        pushModal(editUrl);
+      });
+    });
+
+    // Delete Modal
+    $(document).ready(function() {
+      $("#delete-btn").click(function(e) {
+        e.preventDefault();
+        var userId = $(this).data("user-id");
+        var editUrl = '@Url.Action("Delete", new { id = "__userId__" })';
+
+        editUrl = editUrl.replace("__userId__", userId);
+
+        pushModal(editUrl);
+      });
+    });
+
+    function pushModal(editUrl) {
+      $('#overallModal').modal();
+
+      $("#modal-body-content").load(editUrl).then(function() {
+        alert("Success!");
+      }).catch(function(error) {
+        alert("Error: " + error);
+      });
+    }
+
+</script>
 </body>
 </html>
