@@ -2,10 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Identity_1",
-    "\\Identity_1\\Content\\Assest",
+    "\\Identity_1\\Controllers",
     "\\Identity_1\\Views",
     "\\Identity_1\\Views\\Shared"
   ],
-  "SelectedNode": "\\Identity_1.sln",
+  "SelectedNode": "\\Identity_1\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }

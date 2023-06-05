@@ -196,27 +196,6 @@ $(document).ready(function () {
 });
 
 
-document.getElementById('btn-modal').addEventListener('click', function () {
-
-
-    var URL = IdentityUsersRole_edit_Url;
-
-    $("#modal-body-content").load(URL, function (status) {
-
-
-
-        var contentStatus = status;
-        if (contentStatus === "success") {
-
-        }
-        else {
-            alert(contentStatus);
-        }
-    });
-});
-
-
-
 function DisableBackButton() {
     window.history.forward()
 }

@@ -19,6 +19,7 @@ namespace Identity_1.Controllers
 
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -39,6 +40,7 @@ namespace Identity_1.Controllers
             return View();
         }
 
+
         [HttpPost]
         public JsonResult GetProjectCodes(ProjectCodes model)
         {
@@ -48,7 +50,7 @@ namespace Identity_1.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com");
+                client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com/");
 
                 client.DefaultRequestHeaders.Add("apiKey", "1C2CA9A6-96D3-42C2-939E-7C7C632A714B");
 

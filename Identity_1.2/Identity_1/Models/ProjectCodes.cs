@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Identity_1.Models
 {
@@ -17,6 +18,7 @@ namespace Identity_1.Models
         public bool blue { get; set; }
         public bool red { get; set; }
         public string oracle_site_id { get; set; }
+
     }
 
 }

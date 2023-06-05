@@ -2,7 +2,6 @@
 
 @{
     /**/
-
     ViewBag.Title = "GetProjectCodes";
 }
 
@@ -19,9 +18,8 @@
         @using (Html.BeginForm("GetProjectCodes", "Home", FormMethod.Post, new { @class = "form-cnt" }))
         {
 
-
-
             <div class="form-row">
+
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
                     @Html.EditorFor(x => x.sf_country, null, new { htmlAttributes = new { @class = "form-control" } })
