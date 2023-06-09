@@ -6,6 +6,7 @@
 }
 
 
+
 <div class="row align-items-end bg-primary" id="view_title">
     <div class="col-12">
         <h2 class="text-white text-center title">Get Project Codes</h2>
@@ -14,32 +15,59 @@
 
 
 <div id="form_container" class="row full-height pt-2">
-    <div class="col-6 firts-cnt">
+
+
+
+
+    <div class="col-10 firts-cnt">
+
+        <div class="checkbox-cnt">
+            <div class="checkbox-wrapper-8">
+                <label>Show form</label>
+                <input type="radio" id="show_form" class="tgl tgl-skewed" name="show_all">
+                <label for="show_form" data-tg-on="ON" data-tg-off="OFF" class="tgl-btn"></label>
+            </div>
+            <div class="checkbox-wrapper-8">
+                <label>Show all</label>
+                <input type="radio" id="show_all" class="tgl tgl-skewed" name="show_all">
+                <label for="show_all" data-tg-on="ON" data-tg-off="OFF" class="tgl-btn"></label>
+            </div>
+
+        </div>
+
+
         @using (Html.BeginForm("GetProjectCodes", "Home", FormMethod.Post, new { @class = "form-cnt" }))
         {
 
-            <div class="form-row">
+            <div class="form-row" id="Form_">
 
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.EditorFor(x => x.sf_country, null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".::Select::.", new { id = "country_id", @class = "form-control dropdown-input" })
                 </div>
+
+
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.EditorFor(x => x.site_name, null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownList("site_name", new SelectList(new List<SelectListItem>()), ".::Select::.", new { id = "sites_id", @class = "form-control dropdown-input" })
                 </div>
+
+
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.parent_client_name, "client", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.EditorFor(x => x.parent_client_name, null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownList("parent_client_name", new SelectList(new List<SelectListItem>()), ".::Select::.", new { id = "clients_id", @class = "form-control dropdown-input" })
                 </div>
+
                 <div class="form-group col-4">
-                    @Html.LabelFor(x => x.sf_project_code, "project", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.EditorFor(x => x.sf_project_code, null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(x => x.sf_project_code, "Project", htmlAttributes: new { @class = "control-label text-white" })
+                    @Html.DropDownList("sf_project_code", new SelectList(new List<SelectListItem>()), ".::Select::.", new { id = "projects_id", @class = "form-control dropdown-input", @style = "width:66vh;" })
                 </div>
+
+
                 <div class="teams-cnt">
                     <div class="form-group team-group">
                         @Html.LabelFor(x => x.blue, "team Blue", htmlAttributes: new { @class = "control-label text-white" })
-                        @Html.EditorFor(x => x.blue, null, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(x => x.blue, null, new { htmlAttributes = new { id="checkbox-team-blue", @class = "form-control" } })
                     </div>
                     <div class="form-group team-group">
                         @Html.LabelFor(x => x.red, "team Red", htmlAttributes: new { @class = "control-label text-white" })
@@ -66,7 +94,7 @@
 
 <div id="table_container" class="row pt-2 pb-5 hidden">
     <div class="col-12">
-        <button type="button" id="reset_search" class="btn-general"><i class="fa-solid fa-rotate-left fa-sm"></i>Back </button>
+        <button type="button" id="reset_search" class="btn-general"><i class="fa-solid fa-arrow-left fa-sm"></i>Back </button>
         <hr />
 
 

@@ -19,7 +19,7 @@
     <AssemblyName>Identity_1</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -289,6 +289,7 @@
       <DependentUpon>Identity_role_users.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProjectCodes.cs" />
+    <Compile Include="Models\Projects.cs" />
     <Compile Include="Models\role_identity_nv.cs">
       <DependentUpon>Identity_role_users.tt</DependentUpon>
     </Compile>
@@ -467,6 +468,7 @@
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
     <Content Include="Content\images\cover-login.png" />
+    <Content Include="Content\images\favicon.png" />
     <Content Include="Content\images\Foundever-word.png" />
     <Content Include="Content\images\FoundEver_cover.png" />
     <Content Include="Content\images\Full-FE-Logo.png" />
@@ -479,7 +481,6 @@
     <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\Identity_role_users.Context.tt">
@@ -744,12 +745,12 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Identity_Users_roles\Create.cshtml" />
     <Content Include="Views\Identity_Users_roles\Delete.cshtml" />
-    <Content Include="Views\Identity_Users_roles\Details.cshtml" />
     <Content Include="Views\Identity_Users_roles\Edit.cshtml" />
     <Content Include="Views\Identity_Users_roles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Assest\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -780,7 +781,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50845</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Identity_1</IISUrl>
+          <IISUrl>http://localhost:50845/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:50845/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

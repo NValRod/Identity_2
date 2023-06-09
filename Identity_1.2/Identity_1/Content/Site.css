@@ -12,6 +12,7 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -22,7 +23,6 @@
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
-select,
 textarea {
     max-width: 280px;
 }
@@ -400,14 +400,14 @@ input[type="radio"], input[type="checkbox"]{
     display: flex !important;
     margin: 0 auto;
     justify-content: center;
-    align-items: center;
-    margin-top: 3em;
+    margin-top: -4em;
+    flex-direction: column;
 }
 
 .teams-cnt {
     display: flex;
     gap: 4em;
-    margin-left: 3em;
+    margin-left: 21em;
 }
 
 .team-group{
@@ -493,8 +493,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
 }
 
 table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
-    right: 1em !important;
-}
+    right: 1em !important;}
 
 
 .table-user-roles{
@@ -620,3 +619,176 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
     }
 }
 
+.dropdown-input {
+    border-radius: 11px;
+    padding-left: 8px;
+    height: 2.5em !important;
+    border: 1px solid var(--fe_blue) !important;
+    cursor: pointer;
+}
+
+.option{
+  appearance:none;
+  padding: 10px;
+}
+
+option:hover{
+    color: white !important;
+    background-color: #585858;
+}
+
+.option {
+    background-color: lightblue;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.dropdown-input option:checked {
+    color: var(--fe_navy);
+    font-weight: bold;
+    padding:10px;
+}
+
+
+
+.dropdown-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--fe_green);
+}
+
+
+.checkbox-cnt {
+    height: 5em;
+    color: var(--fe_white);
+    display: flex;
+    gap: 2em;
+    margin-bottom: 7em;
+    margin-left: 1em;
+}
+
+/*----------------*/
+.checkbox-wrapper-8 .tgl {
+    display: none;
+}
+
+    .checkbox-wrapper-8 .tgl,
+    .checkbox-wrapper-8 .tgl:after,
+    .checkbox-wrapper-8 .tgl:before,
+    .checkbox-wrapper-8 .tgl *,
+    .checkbox-wrapper-8 .tgl *:after,
+    .checkbox-wrapper-8 .tgl *:before,
+    .checkbox-wrapper-8 .tgl + .tgl-btn {
+        box-sizing: border-box;
+    }
+
+        .checkbox-wrapper-8 .tgl::-moz-selection,
+        .checkbox-wrapper-8 .tgl:after::-moz-selection,
+        .checkbox-wrapper-8 .tgl:before::-moz-selection,
+        .checkbox-wrapper-8 .tgl *::-moz-selection,
+        .checkbox-wrapper-8 .tgl *:after::-moz-selection,
+        .checkbox-wrapper-8 .tgl *:before::-moz-selection,
+        .checkbox-wrapper-8 .tgl + .tgl-btn::-moz-selection,
+        .checkbox-wrapper-8 .tgl::selection,
+        .checkbox-wrapper-8 .tgl:after::selection,
+        .checkbox-wrapper-8 .tgl:before::selection,
+        .checkbox-wrapper-8 .tgl *::selection,
+        .checkbox-wrapper-8 .tgl *:after::selection,
+        .checkbox-wrapper-8 .tgl *:before::selection,
+        .checkbox-wrapper-8 .tgl + .tgl-btn::selection {
+            background: none;
+        }
+
+        .checkbox-wrapper-8 .tgl + .tgl-btn {
+            outline: 0;
+            display: block;
+            width: 4em;
+            height: 2em;
+            position: relative;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            .checkbox-wrapper-8 .tgl + .tgl-btn:after,
+            .checkbox-wrapper-8 .tgl + .tgl-btn:before {
+                position: relative;
+                display: block;
+                content: "";
+                width: 50%;
+                height: 100%;
+            }
+
+            .checkbox-wrapper-8 .tgl + .tgl-btn:after {
+                left: 0;
+            }
+
+            .checkbox-wrapper-8 .tgl + .tgl-btn:before {
+                display: none;
+            }
+
+        .checkbox-wrapper-8 .tgl:checked + .tgl-btn:after {
+            left: 50%;
+        }
+
+.checkbox-wrapper-8 .tgl-skewed + .tgl-btn {
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: all 0.2s ease;
+    font-family: sans-serif;
+    background: var(--fe_gray);
+    border-radius: 11px;
+}
+
+.checkbox-wrapper-8 .tgl-skewed + .tgl-btn:after,
+.checkbox-wrapper-8 .tgl-skewed + .tgl-btn:before {
+    display: inline-block;
+    transition: all 0.2s ease;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    line-height: 2em;
+    font-weight: bold;
+    color:var(--fe_navy);
+}
+
+
+.checkbox-wrapper-8 .tgl-skewed + .tgl-btn:after {
+    left: 100%;
+    content: attr(data-tg-on);
+}
+
+.checkbox-wrapper-8 .tgl-skewed + .tgl-btn:before {
+    left: 0;
+    content: attr(data-tg-off);
+    color:var(--fe_white);
+}
+
+.checkbox-wrapper-8 .tgl-skewed + .tgl-btn:active {
+    background: var(--fe_green);
+    
+}
+
+    .checkbox-wrapper-8 .tgl-skewed + .tgl-btn:active:before {
+        left: -10%;
+    }
+
+.checkbox-wrapper-8 .tgl-skewed:checked + .tgl-btn {
+    background: var(--fe_green);
+
+}
+
+    .checkbox-wrapper-8 .tgl-skewed:checked + .tgl-btn:before {
+        left: -100%;
+    }
+
+    .checkbox-wrapper-8 .tgl-skewed:checked + .tgl-btn:after {
+        left: 0;
+    }
+
+    .checkbox-wrapper-8 .tgl-skewed:checked + .tgl-btn:active:after {
+        left: 10%;
+    }

@@ -41,6 +41,18 @@ $('#reset_search').click(function () {
 
     $('#clear_form').click();
     $('#dataTable tbody').empty();
+
+
+
+    // Clean the dropdowns function
+    function populateDropdown(id) {
+        var content = '<option>.::Select::.</option>';
+
+        $(id).empty().html(content);
+    }
+    populateDropdown("#sites_id");
+    populateDropdown("#clients_id");
+    populateDropdown("#projects_id");
 });
 
 $('#search_btn').click(function (e) {
@@ -193,16 +205,161 @@ $('#search_btn').click(function (e) {
 $(document).ready(function () {
     setRequired();
     table = $('#dataTable').DataTable();
+    show_btn.checked = true;
 });
 
 
+// Dont allow use the back back buttom function
 function DisableBackButton() {
     window.history.forward()
 }
-
 DisableBackButton();
-
 window.onload = DisableBackButton;
 window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
 window.onunload = function () { void (0) }
 
+
+// Dropdown functions
+
+function populateDropdown(element, data) {
+    var content = '<option>.::Select::.</option>';
+    $.each(data, function (index, val) {
+        content += `<option>${val}</option>`;
+    });
+    element.empty().html(content);
+}
+
+$("#country_id").change(function () {
+    var dropdown = $(this);
+    var selectVal = dropdown.val();
+    var sitesDropdown = $("#sites_id");
+    var clientsDropdown = $("#clients_id");
+    var projectsDropdown = $("#projects_id");
+    populateDropdown(sitesDropdown, []);
+    populateDropdown(clientsDropdown, []);
+    populateDropdown(projectsDropdown, []);
+
+
+    if (selectVal) {
+        $.ajax({
+            url: 'GetSites?country=' + selectVal,
+            type: 'GET',
+            dataType: 'Json',
+            success: function (data) {
+                console.log(data);
+                var sitesDropdown = $("#sites_id");
+                populateDropdown(sitesDropdown, data);
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+            }
+        });
+    } else {
+        var sitesDropdown = $("#sites_id");
+        var clientsDropdown = $("#clients_id");
+        var projectsDropdown = $("#projects_id");
+        populateDropdown(sitesDropdown, []);
+        populateDropdown(clientsDropdown, []);
+        populateDropdown(projectsDropdown, []);
+    }
+});
+
+$("#sites_id").change(function () {
+    var sitesDropdown = $(this).val();
+    var countryDropdown = $("#country_id").val();
+    var clientsDropdown = $("#clients_id");
+    var projectsDropdown = $("#projects_id");
+    populateDropdown(clientsDropdown, []);
+    populateDropdown(projectsDropdown, []);
+
+    if (sitesDropdown) {
+        $.ajax({
+            url: 'GetClients?country=' + countryDropdown + "&sites=" + sitesDropdown,
+            type: 'GET',
+            dataType: 'Json',
+            success: function (data) {
+                console.log(data);
+                var clientsDropdown = $("#clients_id");
+                populateDropdown(clientsDropdown, data);
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+            }
+        });
+    } else {
+        var clientsDropdown = $("#clients_id");
+        var projectsDropdown = $("#projects_id");
+        populateDropdown(clientsDropdown, []);
+        populateDropdown(projectsDropdown, []);
+    }
+});
+
+$("#clients_id").change(function () {
+    var clientsDropdown = $(this).val();
+    var sitesDropdown = $("#sites_id").val();
+    var countryDropdown = $("#country_id").val();
+
+    var selectVal = clientsDropdown;
+    if (selectVal) {
+        $.ajax({
+            url: 'GetProjects?country=' + countryDropdown + "&sites=" + sitesDropdown + "&clients=" + clientsDropdown,//Esto se debe hacer con el helper                                        
+            type: 'GET',//se especifica el metodo (Post o get) por defecto queda en get
+            dataType: 'Json', // el tipo de datos que espera recibir
+            success: function (data) {//esta funcion se ejecuta si el ajax es exitoso (si se espera recibir informacion se debe agregar 'data' en los parametros de function)
+                console.log(data);
+                var content = '<option> .::Select::. </option>';
+                $.each(data, function (index, val) {
+                    content += `<option> ${val.sf_project_name} - ${val.sf_project_code}  </option>`;
+                });
+                $("#projects_id").empty();
+                $("#projects_id").html(content);
+            },
+            error: function (xhr, status, error) {//esta funcion se ejecta cuando hay un error se pueden pedir 3 parametros para averiguar el error 
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+            }
+        });
+    } else {
+        var content = '<option> .::Select::. </option>';
+        $("#projects_id").empty();
+        $("#projects_id").html(content);
+    }
+});
+
+
+
+// Show and Hide forms Func
+
+var countryAction = document.getElementById('country_id');
+var siteAction = document.getElementById('sites_id');
+var clientAction = document.getElementById('clients_id');
+var projectAction = document.getElementById('projects_id');
+var checkboxBlue = document.getElementById('checkbox-team-blue');
+var form_ = document.getElementById('Form_');
+var show_btn = document.getElementById('show_form');
+
+
+document.getElementById('show_all').addEventListener('click', function (e) {
+    console.log('Vamos a habilitar el hidden text');
+    countryAction.disabled = true;
+    siteAction.disabled = true;
+    clientAction.disabled = true;
+    projectAction.disabled = true;
+    checkboxBlue.checked = true;
+    Form_.hidden = true;
+});
+
+document.getElementById('show_form').addEventListener('click', function (e) {
+    console.log('Vamos a habilitar el hidden text');
+    countryAction.disabled = false;
+    siteAction.disabled = false;
+    clientAction.disabled = false;
+    projectAction.disabled = false;
+    checkboxBlue.checked = false;
+    Form_.hidden = false;
+});

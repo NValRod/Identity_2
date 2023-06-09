@@ -12,6 +12,7 @@
     <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/all.css" rel="stylesheet" />
     <link href="~/Content/animate.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Content/images/favicon.png" />
 </head>
 <body>
 
@@ -80,11 +81,11 @@
     <script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
     <script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
     <script src="~/Scripts/jszip.min.js"></script>
-    <script src="https://kit.fontawesome.com/b58f639add.js" crossorigin="anonymous"></script>
     <script src="~/Scripts/AppJS.js"></script>
+    <script src="https://kit.fontawesome.com/b58f639add.js" crossorigin="anonymous"></script>
     @RenderSection("scripts", required: false)
 
-<script>
+    <script>
 
     // Create Modal
     function pushModalCreate() {
@@ -141,7 +142,20 @@
     }
 
 
+    document.addEventListener("DOMContentLoaded", function () {
+        var dropdown = document.getElementById("country_id");
 
-</script>
+        dropdown.addEventListener("change", function () {
+            if (dropdown.value !== "") {
+                dropdown.classList.add("dropdown-selected");
+            } else {
+                dropdown.classList.remove("dropdown-selected");
+            }
+        });
+    });
+
+
+
+    </script>
 </body>
 </html>

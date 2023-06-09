@@ -2,7 +2,6 @@
 
 @{
     /**/
-
     ViewBag.Title = "GetProjectCodes";
 }
 
@@ -19,25 +18,29 @@
         @using (Html.BeginForm("GetProjectCodes", "Home", FormMethod.Post, new { @class = "form-cnt" }))
         {
 
-
-
             <div class="form-row">
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.EditorFor(x => x.sf_country, null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".::Select::.", new { id = "country_id", @class = "form-control dropdown-input" })
                 </div>
+
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.EditorFor(x => x.site_name, null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownList("site_name", new SelectList(new List<SelectListItem>()), ".::Select::.", new { id = "sites_id", @class = "form-control dropdown-input" })
                 </div>
+
+
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.parent_client_name, "client", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.EditorFor(x => x.parent_client_name, null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownList("parent_client_name", new SelectList(new List<SelectListItem>()), ".::Select::.", new { id = "clients_id", @class = "form-control dropdown-input" })
                 </div>
+
                 <div class="form-group col-4">
-                    @Html.LabelFor(x => x.sf_project_code, "project", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.EditorFor(x => x.sf_project_code, null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(x => x.sf_project_code, "Project", htmlAttributes: new { @class = "control-label text-white" })
+                    @Html.DropDownList("sf_project_code", new SelectList(new List<SelectListItem>()), ".::Select::.", new { id = "projects_id", @class = "form-control dropdown-input", @style="width:66vh;" })
                 </div>
+
+
                 <div class="teams-cnt">
                     <div class="form-group team-group">
                         @Html.LabelFor(x => x.blue, "team Blue", htmlAttributes: new { @class = "control-label text-white" })

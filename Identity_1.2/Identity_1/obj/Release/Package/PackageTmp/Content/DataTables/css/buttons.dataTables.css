@@ -86,6 +86,10 @@ a.dt-button {
   text-decoration: none;
   outline: none;
 }
+
+a.dt-button{
+    background-color:green;
+}
 button.dt-button.disabled,
 div.dt-button.disabled,
 a.dt-button.disabled {
