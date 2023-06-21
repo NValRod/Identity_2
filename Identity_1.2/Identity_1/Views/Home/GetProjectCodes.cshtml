@@ -25,22 +25,67 @@
         @using (Html.BeginForm("GetProjectCodes", "Home", FormMethod.Post, new { @class = "form-cnt" }))
         {
 
-            <div class="form-row" id="Form_">
-                <div class="form-group col-4">
+            <div id="Form_">
+
+                <div style="display:flex; flex-direction:row; justify-content:center; align-items:center; gap:1em;">
+
+                    <div class="form-group">
+                        <a id="show-country-dp" class="btn-general hvr-icon-rotate" style="background-color: #023047; color: var(--fe_white) ">
+                            <i class="fa-solid fa-earth-americas hvr-icon"></i>Search Country
+                        </a>
+                    </div>
+
+
+                    <div class="form-group">
+                        <a id="show-site-dp" class="btn-general hvr-icon-rotate" style="background-color: #023047; color:var(--fe_white)">
+                            <i class="fa-solid fa-city hvr-icon"></i>Search Site
+                        </a>
+                    </div>
+
+
+                    <div class="form-group">
+                        <a id="show-client-dp" class="btn-general hvr-icon-rotate" style="background-color: #023047; color:var(--fe_white)">
+                            <i class="fa-solid fa-user-tie hvr-icon"></i>Search Client
+                        </a>
+                    </div>
+
+
+                    <div class="form-group">
+                        <a id="show-countryAndSite-dp" class="btn-general hvr-icon-rotate" style="background-color: #023047; color:var(--fe_white); width: 17em; ">
+                            <i class="fa-solid fa-code-branch hvr-icon"></i>Country and Site
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group col-4 hide-country-dps" id="div3">
                     @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
                     @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".::Select::.", new { id = "country_id", @class = "form-control dropdown-input" })
                 </div>
 
 
-                <div class="form-group col-4">
+                <div class="form-group col-4 hide-site-dps">
                     @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
                     @Html.DropDownList("site_name", new SelectList(ViewBag.ListSites), ".::Select::.", new { id = "sites_id", @class = "form-control dropdown-input" })
                 </div>
 
 
-                <div class="form-group col-4">
+                <div class="form-group col-4 hide-client-dps">
                     @Html.LabelFor(x => x.parent_client_name, "client", htmlAttributes: new { @class = "control-label text-white" })
                     @Html.DropDownList("parent_client_name", new SelectList(ViewBag.ListClients), ".::Select::.", new { id = "clients_id", @class = "form-control dropdown-input" })
+                </div>
+
+
+                <div class="form-group col-4 hide-countryAndsites-dps">
+                    <div>
+                        @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
+                        @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".::Select::.", new { id = "country_id", @class = "form-control dropdown-input" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
+                        @Html.DropDownList("site_name", new SelectList(ViewBag.ListSites), ".::Select::.", new { id = "sites_id", @class = "form-control dropdown-input" })
+                    </div>
                 </div>
 
 
@@ -63,7 +108,14 @@
             <div class="form-row btns-search-cnt">
                 <div class="form-group col-6">
                     <a id="search_btn" class="btn-general hvr-icon-rotate">
-                       <i class="fa-solid fa-magnifying-glass hvr-icon"></i>Search
+                        <i class="fa-solid fa-magnifying-glass hvr-icon"></i>Search
+                    </a>
+                </div>
+
+                <div class="form-group col-6">
+                    <a id="clear_form" class="btn-general btn-clear hvr-icon-rotate">
+                        <i class="fa-solid fa-brush hvr-icon"></i>Clear
+ 
                     </a>
                 </div>
             </div>

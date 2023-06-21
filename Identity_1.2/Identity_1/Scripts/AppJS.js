@@ -29,6 +29,10 @@ function clearForm(e) {
 
 $('#clear_form').click(function () {
     clearForm($(this));
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = true;
 });
 
 
@@ -203,6 +207,11 @@ $(document).ready(function () {
     checkboxBlue.checked = true;
     btnHideForm.hidden = true;
     ttAdvSearch.hidden = true;
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = true;
+    clear_form.hidden = true;
 });
 
 
@@ -357,8 +366,6 @@ var projectsDropdown = $("#projects_id");
 
 
 
-
-
 document.getElementById('btnShowForm').addEventListener('click', function (e) {
 
     ttAdvSearch.hidden = false;
@@ -367,8 +374,7 @@ document.getElementById('btnShowForm').addEventListener('click', function (e) {
     btnShowForm.hidden = true;
     btnHideForm.hidden = false;
 
-
-
+    clear_form.hidden = false;
     $("#keyInfo").slideUp("slow")
 });
 
@@ -380,7 +386,46 @@ document.getElementById('btnHideForm').addEventListener('click', function (e) {
     btnHideForm.hidden = true;
     btnShowForm.hidden = false;
 
+    clear_form.hidden = true;
     $("#keyInfo").slideDown("slow");
 });
 
 
+
+var hideCountryDp = document.querySelector(".hide-country-dps");
+var hideSiteDp = document.querySelector(".hide-site-dps");
+var hideClientDp = document.querySelector(".hide-client-dps");
+var hideCountryAndSiteDp = document.querySelector(".hide-countryAndsites-dps")
+
+document.getElementById("show-country-dp").addEventListener('click', function (e) {
+    hideCountryDp.hidden = false;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = true;
+});
+
+
+
+document.getElementById("show-site-dp").addEventListener('click', function (e) {
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = false;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = true;
+});
+document.getElementById("show-client-dp").addEventListener('click', function (e) {
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = false;
+    hideCountryAndSiteDp.hidden = true;
+
+
+});
+
+document.getElementById("show-countryAndSite-dp").addEventListener('click', function (e) {
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = false;
+
+
+});
