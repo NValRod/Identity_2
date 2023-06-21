@@ -27,43 +27,43 @@
 
             <div id="Form_">
 
+                <label style="color:var(--fe_white)">By:</label>
                 <div style="display:flex; flex-direction:row; justify-content:center; align-items:center; gap:1em;">
 
                     <div class="form-group">
-                        <a id="show-country-dp" class="btn-general hvr-icon-rotate" style="background-color: #023047; color: var(--fe_white) ">
-                            <i class="fa-solid fa-earth-americas hvr-icon"></i>Search Country
+                        <a id="show-country-dp" class="btn-general hvr-icon-push active-btn-dps" style="background-color: #023047; color: var(--fe_white) ">
+                            <i class="fa-solid fa-earth-americas hvr-icon"></i>Country
                         </a>
                     </div>
 
 
                     <div class="form-group">
-                        <a id="show-site-dp" class="btn-general hvr-icon-rotate" style="background-color: #023047; color:var(--fe_white)">
-                            <i class="fa-solid fa-city hvr-icon"></i>Search Site
+                        <a id="show-site-dp" class="btn-general hvr-icon-push active-btn-dps" style="background-color: #023047; color:var(--fe_white)">
+                            <i class="fa-solid fa-city hvr-icon"></i>Site
                         </a>
                     </div>
 
 
                     <div class="form-group">
-                        <a id="show-client-dp" class="btn-general hvr-icon-rotate" style="background-color: #023047; color:var(--fe_white)">
-                            <i class="fa-solid fa-user-tie hvr-icon"></i>Search Client
+                        <a id="show-client-dp" class="btn-general hvr-icon-push active-btn-dps" style="background-color: #023047; color:var(--fe_white)">
+                            <i class="fa-solid fa-user-tie hvr-icon"></i>Client
                         </a>
                     </div>
 
 
                     <div class="form-group">
-                        <a id="show-countryAndSite-dp" class="btn-general hvr-icon-rotate" style="background-color: #023047; color:var(--fe_white); width: 17em; ">
+                        <a id="show-countryAndSite-dp" class="btn-general hvr-icon-push active-btn-dps" style="background-color: #023047; color:var(--fe_white); width: 17em; ">
                             <i class="fa-solid fa-code-branch hvr-icon"></i>Country and Site
                         </a>
                     </div>
+
                 </div>
 
 
-
-                <div class="form-group col-4 hide-country-dps" id="div3">
+                <div class="form-group col-4 hide-country-dps">
                     @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
                     @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".::Select::.", new { id = "country_id", @class = "form-control dropdown-input" })
                 </div>
-
 
                 <div class="form-group col-4 hide-site-dps">
                     @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
@@ -113,7 +113,7 @@
                 </div>
 
                 <div class="form-group col-6">
-                    <a id="clear_form" class="btn-general btn-clear hvr-icon-rotate">
+                    <a id="clear_form" class="btn-general btn-clear hvr-icon-rotate" onclick="clearFormOnClick()">
                         <i class="fa-solid fa-brush hvr-icon"></i>Clear
  
                     </a>

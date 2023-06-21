@@ -665,7 +665,6 @@ div.dataTables_wrapper div.dataTables_length label {
 
 .table-hover tbody tr:hover {
     color: var(--fe_navy);
-    background-color: #e7fbf1;
 }
 
 thead{
@@ -723,6 +722,14 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
 }
 
 
+.fadeout {
+    transition: opacity 1s ease-in-out;
+    zoom: 1;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+
 /* ------- CRUDs style ------- */
 
 
@@ -767,8 +774,14 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
 .hide-countryAndsites-dps{
     display:flex;
     gap:3em;
-
 }
+
+
+.active-btn-dps.active {
+    background-color: var(--fe_white) !important;
+    color: var(--fe_navy) !important;
+}
+
 /* ------- Media querys keep it at the bottom pls ------- */
 /* Media query for the scroll */
 @media only screen and (max-width: 1440px) {
