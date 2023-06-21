@@ -24,6 +24,7 @@ namespace Identity_1.Controllers
         [HttpPost]
         public ActionResult Login(string domain, string userN, string userP)
         {
+            string error = null;
             string dns = GetDomainDNS(domain);
             bool isValid = false;
             try
@@ -48,12 +49,18 @@ namespace Identity_1.Controllers
                     }
 
                 }
+                else
+                {
+                    error = "Incorrect User or password ";
+                    ViewBag.error = error;
+                }
+
             }
             catch (Exception ex)
             {
                 return View(new { error = "there was an exception during execution" });
             }
-            return View(new { error = "" });
+            return View();
         }
 
         private string GetDomainDNS(string domain)

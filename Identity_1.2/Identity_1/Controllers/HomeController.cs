@@ -41,6 +41,8 @@ namespace Identity_1.Controllers
             }
 
             GetCountries();
+            GetClients();
+            GetSites();
             return View();
         }
 
@@ -80,16 +82,16 @@ namespace Identity_1.Controllers
 
 
         // Get the sites list
-        public JsonResult GetSites(string country)
+        public JsonResult GetSites()
         {
 
             List<string> sites = new List<string>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com/");
+                client.BaseAddress = new Uri("https://localhost:44323/swagger/");
                 client.DefaultRequestHeaders.Add("apiKey", "1C2CA9A6-96D3-42C2-939E-7C7C632A714B");
                 
-                var respTalk = client.PostAsync("/api/projectcodes/GetDataSites?country=" + country, null);
+                var respTalk = client.GetAsync("/api/projectcodes/GetDataSites");
                 respTalk.Wait();
 
                 var result = respTalk.Result;
@@ -113,16 +115,16 @@ namespace Identity_1.Controllers
 
 
         // Get the clients list
-        public JsonResult GetClients(string country, string sites)
+        public JsonResult GetClients()
         {
 
             List<string> sitesClients = new List<string>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com/");
+                client.BaseAddress = new Uri("https://localhost:44323/swagger/");
                 client.DefaultRequestHeaders.Add("apiKey", "1C2CA9A6-96D3-42C2-939E-7C7C632A714B");
 
-                var respTalk = client.PostAsync("/api/projectcodes/GetDataClients?country=" + country + "&siteName=" + sites, null);
+                var respTalk = client.GetAsync("/api/projectcodes/GetDataClients");
                 respTalk.Wait();
 
                 var result = respTalk.Result;
@@ -146,36 +148,36 @@ namespace Identity_1.Controllers
 
 
         // Get the projects list
-        public JsonResult GetProjects(string country, string sites, string clients)
-        {
+        //public JsonResult GetProjects(string country, string sites, string clients)
+        //{
 
-            List < Projects> projects = new List<Projects>();
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com/");
-                client.DefaultRequestHeaders.Add("apiKey", "1C2CA9A6-96D3-42C2-939E-7C7C632A714B");
+        //    List < Projects> projects = new List<Projects>();
+        //    using (var client = new HttpClient())
+        //    {
+        //        client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com/");
+        //        client.DefaultRequestHeaders.Add("apiKey", "1C2CA9A6-96D3-42C2-939E-7C7C632A714B");
 
-                var respTalk = client.PostAsync("/api/projectcodes/GetDataProjects?country=" + country + "&siteName=" + sites + "&client=" + clients, null);
-                respTalk.Wait();
+        //        var respTalk = client.GetAsync("/api/projectcodes/GetDataProjects?country=" + country + "&siteName=" + sites + "&client=" + clients);
+        //        respTalk.Wait();
 
-                var result = respTalk.Result;
+        //        var result = respTalk.Result;
 
-                if (result.IsSuccessStatusCode)
-                {
-                    var readJob = result.Content.ReadAsAsync<List<Projects>>();
-                    readJob.Wait();
-                    projects = readJob.Result;
-                }
-                else
-                {
-                    projects = new List<Projects>();
+        //        if (result.IsSuccessStatusCode)
+        //        {
+        //            var readJob = result.Content.ReadAsAsync<List<Projects>>();
+        //            readJob.Wait();
+        //            projects = readJob.Result;
+        //        }
+        //        else
+        //        {
+        //            projects = new List<Projects>();
 
-                }
-                ViewBag.ListProjects = projects;
-                return Json(projects, JsonRequestBehavior.AllowGet);
+        //        }
+        //        ViewBag.ListProjects = projects;
+        //        return Json(projects, JsonRequestBehavior.AllowGet);
 
-            }
-        }
+        //    }
+        //}
 
 
 
@@ -198,7 +200,7 @@ namespace Identity_1.Controllers
                     site_name = (model.site_name != ".::Select::.") ? model.site_name: null,
                     parent_client_name = (model.parent_client_name != ".::Select::.") ? model.parent_client_name : null,
                     sf_project_code = (model.sf_project_code != ".::Select::.") ? model.sf_project_code : null,
-                    blue = model.blue,
+                    blue = true,
                     red = model.red
                 };
 

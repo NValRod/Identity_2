@@ -1,12 +1,19 @@
 ﻿
+
 @{
     ViewBag.Title = "Login";
+    string error = ViewBag.error;
+
 }
 
+
+
 <div class="main_cnt">
+
     <h1>Welcome to ....</h1>
     @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form_log" }))
     {
+
 
 
         <h2>Enter your user and password</h2>
@@ -39,8 +46,14 @@
 
         <button type="submit" class="btn-general" value="Login">log in</button>
 
+        if (error != null)
+        {
+            <span style="color:red;">@error</span>
+        }
+
     }
 
 
 </div>
+
 

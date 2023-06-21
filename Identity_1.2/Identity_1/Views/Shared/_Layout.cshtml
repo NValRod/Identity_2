@@ -11,12 +11,13 @@
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/all.css" rel="stylesheet" />
+    <link href="~/Content/icons_hovers.css" rel="stylesheet" />
     <link href="~/Content/animate.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="~/Content/images/favicon.png" />
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
         <a class="navbar-brand" href="#"> <img src="@Url.Content("~/Content/images/Full-FE-Logo.png")" /> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -94,11 +95,9 @@
 
 
 
-        $("#modal-body-content").load(partialView_AddOrEditResignationDetail_URL).then(function () {
-            alert("Success!");
-        }).catch(function (error) {
-            alert("Error: " + error);
-        });
+        $("#modal-body-content").load(partialView_AddOrEditResignationDetail_URL), function () {
+            console.log("Success")
+        };
     }
     $("#btn-modal").click(function () {
         pushModalCreate();
@@ -107,20 +106,22 @@
 
     // Edit Modal
     $(document).ready(function() {
-      $("#edit-btn").click(function(e) {
+      $(".edit-btn").click(function(e) {
         e.preventDefault();
-        var userId = $(this).data("user-id");
+          var userId = $(this).data("user-id");
+          console.log(userId)
         var editUrl = '@Url.Action("Edit", new { id = "__userId__" })';
 
         editUrl = editUrl.replace("__userId__", userId);
 
-        pushModal(editUrl);
+          pushModal(editUrl);
+          console.log(userId)
       });
     });
 
     // Delete Modal
     $(document).ready(function() {
-      $("#delete-btn").click(function(e) {
+      $(".delete-btn").click(function(e) {
         e.preventDefault();
         var userId = $(this).data("user-id");
         var editUrl = '@Url.Action("Delete", new { id = "__userId__" })';
@@ -134,11 +135,9 @@
     function pushModal(editUrl) {
       $('#overallModal').modal();
 
-      $("#modal-body-content").load(editUrl).then(function() {
-        alert("Success!");
-      }).catch(function(error) {
-        alert("Error: " + error);
-      });
+      $("#modal-body-content").load(editUrl), function() {
+         console.log("Success")
+      };
     }
 
 

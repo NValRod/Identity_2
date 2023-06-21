@@ -472,6 +472,7 @@
     <Content Include="Content\images\Foundever-word.png" />
     <Content Include="Content\images\FoundEver_cover.png" />
     <Content Include="Content\images\Full-FE-Logo.png" />
+    <Content Include="Content\icons_hovers.css" />
     <Content Include="Content\images\Logo.png" />
     <Content Include="Content\regular.css" />
     <Content Include="Content\regular.min.css" />

@@ -7,32 +7,18 @@
 
 
 
-<div class="row align-items-end bg-primary" id="view_title">
-    <div class="col-12">
-        <h2 class="text-white text-center title">Get Project Codes</h2>
-    </div>
-</div>
+
 
 
 <div id="form_container" class="row full-height pt-2">
 
-
-
-
     <div class="col-10 firts-cnt">
 
-        <div class="checkbox-cnt">
-            <div class="checkbox-wrapper-8">
-                <label>Show form</label>
-                <input type="radio" id="show_form" class="tgl tgl-skewed" name="show_all">
-                <label for="show_form" data-tg-on="ON" data-tg-off="OFF" class="tgl-btn"></label>
-            </div>
-            <div class="checkbox-wrapper-8">
-                <label>Show all</label>
-                <input type="radio" id="show_all" class="tgl tgl-skewed" name="show_all">
-                <label for="show_all" data-tg-on="ON" data-tg-off="OFF" class="tgl-btn"></label>
-            </div>
+        <h1 class="text-white text-center title-adv-search" id="ttAdvSearch">Advanced Search</h1>
 
+        <div id="keyInfo">
+            <h2 class="text-white text-center title" style="margin-top:-2em">Get Project Codes</h2>
+            <h4 style="color:var(--fe_white); font-weight:500; padding: 0 4em">If you are looking for all the results, click the search button, you can also go to advanced search and select the dropdown menus that you require, remember you need to check the boxes to enable the menus.</h4>
         </div>
 
 
@@ -40,7 +26,6 @@
         {
 
             <div class="form-row" id="Form_">
-
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
                     @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".::Select::.", new { id = "country_id", @class = "form-control dropdown-input" })
@@ -49,44 +34,47 @@
 
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.DropDownList("site_name", new SelectList(new List<SelectListItem>()), ".::Select::.", new { id = "sites_id", @class = "form-control dropdown-input" })
+                    @Html.DropDownList("site_name", new SelectList(ViewBag.ListSites), ".::Select::.", new { id = "sites_id", @class = "form-control dropdown-input" })
                 </div>
 
 
                 <div class="form-group col-4">
                     @Html.LabelFor(x => x.parent_client_name, "client", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.DropDownList("parent_client_name", new SelectList(new List<SelectListItem>()), ".::Select::.", new { id = "clients_id", @class = "form-control dropdown-input" })
-                </div>
-
-                <div class="form-group col-4">
-                    @Html.LabelFor(x => x.sf_project_code, "Project", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.DropDownList("sf_project_code", new SelectList(new List<SelectListItem>()), ".::Select::.", new { id = "projects_id", @class = "form-control dropdown-input", @style = "width:66vh;" })
+                    @Html.DropDownList("parent_client_name", new SelectList(ViewBag.ListClients), ".::Select::.", new { id = "clients_id", @class = "form-control dropdown-input" })
                 </div>
 
 
-                <div class="teams-cnt">
+                <div class="teams-cnt" style="display:none">
                     <div class="form-group team-group">
                         @Html.LabelFor(x => x.blue, "team Blue", htmlAttributes: new { @class = "control-label text-white" })
-                        @Html.EditorFor(x => x.blue, null, new { htmlAttributes = new { id="checkbox-team-blue", @class = "form-control" } })
+                        @Html.EditorFor(x => x.blue, null, new { htmlAttributes = new { id = "checkbox-team-blue", @class = "form-control" } })
+                        <div class="checkmark"></div>
                     </div>
                     <div class="form-group team-group">
                         @Html.LabelFor(x => x.red, "team Red", htmlAttributes: new { @class = "control-label text-white" })
-                        @Html.EditorFor(x => x.red, null, new { htmlAttributes = new { @class = "form-control rounded" } })
+                        @Html.EditorFor(x => x.red, null, new { htmlAttributes = new { id = "checkbox-team-blue", @class = "form-control" } })
+                        <div class="checkmark"></div>
                     </div>
                 </div>
             </div>
+
 
 
             <div class="form-row btns-search-cnt">
                 <div class="form-group col-6">
-                    <button type="button" id="clear_form" class="btn-general btn-clear"><i class="fa-solid fa-brush fa-sm"></i>Clear</button>
-                </div>
-                <div class="form-group col-6">
-                    <submit class="btn-general" id="search_btn"><i class="fa-solid fa-magnifying-glass"></i>Search</submit>
+                    <a id="search_btn" class="btn-general hvr-icon-rotate">
+                       <i class="fa-solid fa-magnifying-glass hvr-icon"></i>Search
+                    </a>
                 </div>
             </div>
 
+
         }
+
+    <div class="show-btns-cnt">
+        <a id="btnShowForm" class="btn_show_form hvr-icon-up"><i class="fa-solid fa-arrow-up fa-xl hvr-icon"></i>Advanced Search</a>
+        <a id="btnHideForm" class="btn_show_form hvr-icon-down"><i class="fa-solid fa-arrow-down fa-xl hvr-icon"></i>Search All Results</a>
+    </div>
     </div>
 </div>
 
@@ -94,9 +82,11 @@
 
 <div id="table_container" class="row pt-2 pb-5 hidden">
     <div class="col-12">
-        <button type="button" id="reset_search" class="btn-general"><i class="fa-solid fa-arrow-left fa-sm"></i>Back </button>
-        <hr />
+        <h2 class="text-center title" style="color:var(--fe_navy); margin-top:1.3em">Get Project Codes</h2>
+        <a  id="reset_search" class="btn-general hvr-icon-back"><i class="fa-solid fa-arrow-left fa-sm hvr-icon"></i> Back</a>
 
+
+        <hr />
 
         <table class="table table-bordered table-hover table-sm" id="dataTable">
             <thead>

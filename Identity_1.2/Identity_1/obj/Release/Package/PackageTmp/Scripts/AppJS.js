@@ -36,9 +36,6 @@ $('#reset_search').click(function () {
     $('#form_container').slideDown();
     $('#table_container').slideUp();
     
-    $('#view_title').addClass('bg-primary');
-    $('#view_title h2').addClass('text-white');
-
     $('#clear_form').click();
     $('#dataTable tbody').empty();
 
@@ -128,7 +125,6 @@ $('#search_btn').click(function (e) {
                                 [10, 25, 50, 'All']
                             ],
                             buttons: [
-
                                 {
                                     extend: 'pageLength',
                                     text: 'Show',
@@ -149,8 +145,6 @@ $('#search_btn').click(function (e) {
                         //$('#form_container').hide('slide');
                         //$('#table_container').show('slide');  
 
-                        $('#view_title').removeClass('bg-primary');
-                        $('#view_title h2').removeClass('text-white');
                         $('#form_container').slideUp();                        
                         $('#table_container').slideDown();
 
@@ -205,6 +199,10 @@ $('#search_btn').click(function (e) {
 $(document).ready(function () {
     setRequired();
     table = $('#dataTable').DataTable();
+    Form_.hidden = true;
+    checkboxBlue.checked = true;
+    btnHideForm.hidden = true;
+    ttAdvSearch.hidden = true;
 });
 
 
@@ -231,6 +229,13 @@ function populateDropdown(element, data) {
 $("#country_id").change(function () {
     var dropdown = $(this);
     var selectVal = dropdown.val();
+    var sitesDropdown = $("#sites_id");
+    var clientsDropdown = $("#clients_id");
+    var projectsDropdown = $("#projects_id");
+    populateDropdown(sitesDropdown, []);
+    populateDropdown(clientsDropdown, []);
+    populateDropdown(projectsDropdown, []);
+
 
     if (selectVal) {
         $.ajax({
@@ -250,13 +255,21 @@ $("#country_id").change(function () {
         });
     } else {
         var sitesDropdown = $("#sites_id");
+        var clientsDropdown = $("#clients_id");
+        var projectsDropdown = $("#projects_id");
         populateDropdown(sitesDropdown, []);
+        populateDropdown(clientsDropdown, []);
+        populateDropdown(projectsDropdown, []);
     }
 });
 
 $("#sites_id").change(function () {
     var sitesDropdown = $(this).val();
     var countryDropdown = $("#country_id").val();
+    var clientsDropdown = $("#clients_id");
+    var projectsDropdown = $("#projects_id");
+    populateDropdown(clientsDropdown, []);
+    populateDropdown(projectsDropdown, []);
 
     if (sitesDropdown) {
         $.ajax({
@@ -276,7 +289,9 @@ $("#sites_id").change(function () {
         });
     } else {
         var clientsDropdown = $("#clients_id");
+        var projectsDropdown = $("#projects_id");
         populateDropdown(clientsDropdown, []);
+        populateDropdown(projectsDropdown, []);
     }
 });
 
@@ -312,4 +327,95 @@ $("#clients_id").change(function () {
         $("#projects_id").html(content);
     }
 });
+
+
+
+// Show and Hide forms Func
+
+
+var checkboxBlue = document.getElementById('checkbox-team-blue');
+var form_ = document.getElementById('Form_');
+var show_btn = document.getElementById('show_form');
+var keyInfo = document.getElementById('keyInfo');
+var btnShowForm = document.getElementById('btnShowForm');
+var btnHideForm = document.getElementById('btnHideForm');
+
+var checkForSite = document.getElementById('checkForSite');
+var checkForClient = document.getElementById('checkForClient');
+var checkForProject = document.getElementById('checkForProject');
+
+var site_id = document.getElementById('sites_id');
+var client_id = document.getElementById('clients_id');
+var project_id = document.getElementById('projects_id');
+var ttAdvSearch = document.getElementById('ttAdvSearch');
+var Form_ = document.getElementById('Form_');
+
+var sitesDropdown = $("#sites_id");
+var clientsDropdown = $("#clients_id");
+var projectsDropdown = $("#projects_id");
+
+
+
+
+checkForSite.addEventListener('click', function (e) {
+
+    if (checkForSite.checked === true) {
+        site_id.disabled = false;
+
+    } else {
+        site_id.disabled = true;
+        populateDropdown(sitesDropdown, []);
+    }
+})
+
+checkForClient.addEventListener('click', function (e) {
+
+    if (checkForClient.checked === true) {
+        client_id.disabled = false;
+    } else {
+        client_id.disabled = true;
+        populateDropdown(clientsDropdown, []);
+    }
+
+})
+
+
+checkForProject.addEventListener('click', function (e) {
+
+    if (checkForProject.checked === true) {
+        project_id.disabled = false;
+    } else {
+        project_id.disabled = true;
+        populateDropdown(projectsDropdown, []);
+    }
+
+})
+
+document.getElementById('btnShowForm').addEventListener('click', function (e) {
+
+    ttAdvSearch.hidden = false;
+    Form_.hidden = false;
+    checkboxBlue.checked = false;
+    btnShowForm.hidden = true;
+    btnHideForm.hidden = false;
+    site_id.disabled = true;
+    client_id.disabled = true;
+    project_id.disabled = true;
+
+
+    $("#keyInfo").slideUp("slow")
+});
+
+document.getElementById('btnHideForm').addEventListener('click', function (e) {
+    ttAdvSearch.hidden = true;
+    keyInfo.hidden = false;
+    Form_.hidden = true;
+    checkboxBlue.checked = true;
+    btnHideForm.hidden = true;
+    btnShowForm.hidden = false;
+
+    $("#keyInfo").slideDown("slow");
+
+});
+
 

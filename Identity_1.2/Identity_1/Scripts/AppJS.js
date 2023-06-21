@@ -36,9 +36,6 @@ $('#reset_search').click(function () {
     $('#form_container').slideDown();
     $('#table_container').slideUp();
     
-    $('#view_title').addClass('bg-primary');
-    $('#view_title h2').addClass('text-white');
-
     $('#clear_form').click();
     $('#dataTable tbody').empty();
 
@@ -71,7 +68,7 @@ $('#search_btn').click(function (e) {
         Swal.fire({
             title: 'Loading Results',
             //html: 'I will close in <b></b> milliseconds.',
-            timer: 3500,
+            timer: 2500,
             timerProgressBar: true,
             didOpen: () => {
                 Swal.showLoading();                
@@ -128,7 +125,6 @@ $('#search_btn').click(function (e) {
                                 [10, 25, 50, 'All']
                             ],
                             buttons: [
-
                                 {
                                     extend: 'pageLength',
                                     text: 'Show',
@@ -149,8 +145,6 @@ $('#search_btn').click(function (e) {
                         //$('#form_container').hide('slide');
                         //$('#table_container').show('slide');  
 
-                        $('#view_title').removeClass('bg-primary');
-                        $('#view_title h2').removeClass('text-white');
                         $('#form_container').slideUp();                        
                         $('#table_container').slideDown();
 
@@ -205,7 +199,10 @@ $('#search_btn').click(function (e) {
 $(document).ready(function () {
     setRequired();
     table = $('#dataTable').DataTable();
-    show_btn.checked = true;
+    Form_.hidden = true;
+    checkboxBlue.checked = true;
+    btnHideForm.hidden = true;
+    ttAdvSearch.hidden = true;
 });
 
 
@@ -221,145 +218,169 @@ window.onunload = function () { void (0) }
 
 // Dropdown functions
 
-function populateDropdown(element, data) {
-    var content = '<option>.::Select::.</option>';
-    $.each(data, function (index, val) {
-        content += `<option>${val}</option>`;
-    });
-    element.empty().html(content);
-}
+//function populateDropdown(element, data) {
+//    var content = '<option>.::Select::.</option>';
+//    $.each(data, function (index, val) {
+//        content += `<option>${val}</option>`;
+//    });
+//    element.empty().html(content);
+//}
 
-$("#country_id").change(function () {
-    var dropdown = $(this);
-    var selectVal = dropdown.val();
-    var sitesDropdown = $("#sites_id");
-    var clientsDropdown = $("#clients_id");
-    var projectsDropdown = $("#projects_id");
-    populateDropdown(sitesDropdown, []);
-    populateDropdown(clientsDropdown, []);
-    populateDropdown(projectsDropdown, []);
+//$("#country_id").change(function () {
+//    var dropdown = $(this);
+//    var selectVal = dropdown.val();
+//    var sitesDropdown = $("#sites_id");
+//    var clientsDropdown = $("#clients_id");
+//    var projectsDropdown = $("#projects_id");
+//    populateDropdown(sitesDropdown, []);
+//    populateDropdown(clientsDropdown, []);
+//    populateDropdown(projectsDropdown, []);
 
 
-    if (selectVal) {
-        $.ajax({
-            url: 'GetSites?country=' + selectVal,
-            type: 'GET',
-            dataType: 'Json',
-            success: function (data) {
-                console.log(data);
-                var sitesDropdown = $("#sites_id");
-                populateDropdown(sitesDropdown, data);
-            },
-            error: function (xhr, status, error) {
-                console.log(xhr);
-                console.log(status);
-                console.log(error);
-            }
-        });
-    } else {
-        var sitesDropdown = $("#sites_id");
-        var clientsDropdown = $("#clients_id");
-        var projectsDropdown = $("#projects_id");
-        populateDropdown(sitesDropdown, []);
-        populateDropdown(clientsDropdown, []);
-        populateDropdown(projectsDropdown, []);
-    }
-});
+//    if (selectVal) {
+//        $.ajax({
+//            url: 'GetSites',
+//            type: 'GET',
+//            dataType: 'Json',
+//            success: function (data) {
+//                console.log(data);
+//                var sitesDropdown = $("#sites_id");
+//                populateDropdown(sitesDropdown, data);
+//            },
+//            error: function (xhr, status, error) {
+//                console.log(xhr);
+//                console.log(status);
+//                console.log(error);
+//            }
+//        });
+//    } else {
+//        var sitesDropdown = $("#sites_id");
+//        var clientsDropdown = $("#clients_id");
+//        var projectsDropdown = $("#projects_id");
+//        populateDropdown(sitesDropdown, []);
+//        populateDropdown(clientsDropdown, []);
+//        populateDropdown(projectsDropdown, []);
+//    }
+//});
 
-$("#sites_id").change(function () {
-    var sitesDropdown = $(this).val();
-    var countryDropdown = $("#country_id").val();
-    var clientsDropdown = $("#clients_id");
-    var projectsDropdown = $("#projects_id");
-    populateDropdown(clientsDropdown, []);
-    populateDropdown(projectsDropdown, []);
+//$("#sites_id").change(function () {
+//    var sitesDropdown = $(this).val();
+//    var countryDropdown = $("#country_id").val();
+//    var clientsDropdown = $("#clients_id");
+//    var projectsDropdown = $("#projects_id");
+//    populateDropdown(clientsDropdown, []);
+//    populateDropdown(projectsDropdown, []);
 
-    if (sitesDropdown) {
-        $.ajax({
-            url: 'GetClients?country=' + countryDropdown + "&sites=" + sitesDropdown,
-            type: 'GET',
-            dataType: 'Json',
-            success: function (data) {
-                console.log(data);
-                var clientsDropdown = $("#clients_id");
-                populateDropdown(clientsDropdown, data);
-            },
-            error: function (xhr, status, error) {
-                console.log(xhr);
-                console.log(status);
-                console.log(error);
-            }
-        });
-    } else {
-        var clientsDropdown = $("#clients_id");
-        var projectsDropdown = $("#projects_id");
-        populateDropdown(clientsDropdown, []);
-        populateDropdown(projectsDropdown, []);
-    }
-});
+//    if (sitesDropdown) {
+//        $.ajax({
+//            url: 'GetClients?country=' + countryDropdown + "&sites=" + sitesDropdown,
+//            type: 'GET',
+//            dataType: 'Json',
+//            success: function (data) {
+//                console.log(data);
+//                var clientsDropdown = $("#clients_id");
+//                populateDropdown(clientsDropdown, data);
+//            },
+//            error: function (xhr, status, error) {
+//                console.log(xhr);
+//                console.log(status);
+//                console.log(error);
+//            }
+//        });
+//    } else {
+//        var clientsDropdown = $("#clients_id");
+//        var projectsDropdown = $("#projects_id");
+//        populateDropdown(clientsDropdown, []);
+//        populateDropdown(projectsDropdown, []);
+//    }
+//});
 
-$("#clients_id").change(function () {
-    var clientsDropdown = $(this).val();
-    var sitesDropdown = $("#sites_id").val();
-    var countryDropdown = $("#country_id").val();
+//$("#clients_id").change(function () {
+//    var clientsDropdown = $(this).val();
+//    var sitesDropdown = $("#sites_id").val();
+//    var countryDropdown = $("#country_id").val();
 
-    var selectVal = clientsDropdown;
-    if (selectVal) {
-        $.ajax({
-            url: 'GetProjects?country=' + countryDropdown + "&sites=" + sitesDropdown + "&clients=" + clientsDropdown,//Esto se debe hacer con el helper                                        
-            type: 'GET',//se especifica el metodo (Post o get) por defecto queda en get
-            dataType: 'Json', // el tipo de datos que espera recibir
-            success: function (data) {//esta funcion se ejecuta si el ajax es exitoso (si se espera recibir informacion se debe agregar 'data' en los parametros de function)
-                console.log(data);
-                var content = '<option> .::Select::. </option>';
-                $.each(data, function (index, val) {
-                    content += `<option> ${val.sf_project_name} - ${val.sf_project_code}  </option>`;
-                });
-                $("#projects_id").empty();
-                $("#projects_id").html(content);
-            },
-            error: function (xhr, status, error) {//esta funcion se ejecta cuando hay un error se pueden pedir 3 parametros para averiguar el error 
-                console.log(xhr);
-                console.log(status);
-                console.log(error);
-            }
-        });
-    } else {
-        var content = '<option> .::Select::. </option>';
-        $("#projects_id").empty();
-        $("#projects_id").html(content);
-    }
-});
+//    var selectVal = clientsDropdown;
+//    if (selectVal) {
+//        $.ajax({
+//            url: 'GetProjects?country=' + countryDropdown + "&sites=" + sitesDropdown + "&clients=" + clientsDropdown,//Esto se debe hacer con el helper                                        
+//            type: 'GET',//se especifica el metodo (Post o get) por defecto queda en get
+//            dataType: 'Json', // el tipo de datos que espera recibir
+//            success: function (data) {//esta funcion se ejecuta si el ajax es exitoso (si se espera recibir informacion se debe agregar 'data' en los parametros de function)
+//                console.log(data);
+//                var content = '<option> .::Select::. </option>';
+//                $.each(data, function (index, val) {
+//                    content += `<option> ${val.sf_project_name} - ${val.sf_project_code}  </option>`;
+//                });
+//                $("#projects_id").empty();
+//                $("#projects_id").html(content);
+//            },
+//            error: function (xhr, status, error) {//esta funcion se ejecta cuando hay un error se pueden pedir 3 parametros para averiguar el error 
+//                console.log(xhr);
+//                console.log(status);
+//                console.log(error);
+//            }
+//        });
+//    } else {
+//        var content = '<option> .::Select::. </option>';
+//        $("#projects_id").empty();
+//        $("#projects_id").html(content);
+//    }
+//});
 
 
 
 // Show and Hide forms Func
 
-var countryAction = document.getElementById('country_id');
-var siteAction = document.getElementById('sites_id');
-var clientAction = document.getElementById('clients_id');
-var projectAction = document.getElementById('projects_id');
+
 var checkboxBlue = document.getElementById('checkbox-team-blue');
 var form_ = document.getElementById('Form_');
 var show_btn = document.getElementById('show_form');
+var keyInfo = document.getElementById('keyInfo');
+var btnShowForm = document.getElementById('btnShowForm');
+var btnHideForm = document.getElementById('btnHideForm');
+
+var checkForSite = document.getElementById('checkForSite');
 
 
-document.getElementById('show_all').addEventListener('click', function (e) {
-    console.log('Vamos a habilitar el hidden text');
-    countryAction.disabled = true;
-    siteAction.disabled = true;
-    clientAction.disabled = true;
-    projectAction.disabled = true;
-    checkboxBlue.checked = true;
-    Form_.hidden = true;
-});
 
-document.getElementById('show_form').addEventListener('click', function (e) {
-    console.log('Vamos a habilitar el hidden text');
-    countryAction.disabled = false;
-    siteAction.disabled = false;
-    clientAction.disabled = false;
-    projectAction.disabled = false;
-    checkboxBlue.checked = false;
+var site_id = document.getElementById('sites_id');
+var client_id = document.getElementById('clients_id');
+var project_id = document.getElementById('projects_id');
+var ttAdvSearch = document.getElementById('ttAdvSearch');
+var Form_ = document.getElementById('Form_');
+
+var sitesDropdown = $("#sites_id");
+var clientsDropdown = $("#clients_id");
+var projectsDropdown = $("#projects_id");
+
+
+
+
+
+
+document.getElementById('btnShowForm').addEventListener('click', function (e) {
+
+    ttAdvSearch.hidden = false;
     Form_.hidden = false;
+    checkboxBlue.checked = false;
+    btnShowForm.hidden = true;
+    btnHideForm.hidden = false;
+
+
+
+    $("#keyInfo").slideUp("slow")
 });
+
+document.getElementById('btnHideForm').addEventListener('click', function (e) {
+    ttAdvSearch.hidden = true;
+    keyInfo.hidden = false;
+    Form_.hidden = true;
+    checkboxBlue.checked = true;
+    btnHideForm.hidden = true;
+    btnShowForm.hidden = false;
+
+    $("#keyInfo").slideDown("slow");
+});
+
+
