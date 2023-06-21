@@ -139,9 +139,11 @@ label {
 
 .btn-clear {
     background-color: var(--fe_gray);
-    color: var(--fe_white);
+    color: var(--fe_navy);
     flex-wrap: nowrap;
 }
+
+
 
 .btns-search-cnt {
     display: flex;
@@ -663,7 +665,6 @@ div.dataTables_wrapper div.dataTables_length label {
 
 .table-hover tbody tr:hover {
     color: var(--fe_navy);
-    background-color: #e7fbf1;
 }
 
 thead{
@@ -721,6 +722,14 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
 }
 
 
+.fadeout {
+    transition: opacity 1s ease-in-out;
+    zoom: 1;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+
 /* ------- CRUDs style ------- */
 
 
@@ -757,23 +766,31 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
     padding:2em 1em;
 }
 
-.modal-content{
-    border-radius:11px;
+.modal-content {
+    border-radius: 11px;
 }
 
 
+.hide-countryAndsites-dps{
+    display:flex;
+    gap:3em;
+}
+
+
+.active-btn-dps.active {
+    background-color: var(--fe_white) !important;
+    color: var(--fe_navy) !important;
+}
+
 /* ------- Media querys keep it at the bottom pls ------- */
 /* Media query for the scroll */
-
-
-
 @media only screen and (max-width: 1440px) {
     #btnShowForm {
         margin-top: -1em;
         margin-bottom: -8em;
     }
 
-    #search_btn {
+    #search_btn, #clear_form {
         width: 9em;
         height: 2.3em;
         font-size: 15px;
@@ -849,6 +866,7 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
     height: 2.5em !important;
     border: 1px solid var(--fe_blue) !important;
     cursor: pointer;
+    width:25em;
 }
 
 .option{

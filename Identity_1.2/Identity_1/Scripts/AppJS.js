@@ -12,24 +12,35 @@ function setRequired() {
     });
 }
 
-function clearForm(e) {
-    var modal_attr = e.parents('form:first');
-    var formVals = modal_attr.find('input:visible, select:visible, textarea:visible');
+//function clearForm(e) {
+//    var modal_attr = e.parents('form:first');
+//    var formVals = modal_attr.find('input:visible, select:visible, textarea:visible');
 
-    formVals.each(function () {
-        var elementType = $(this).attr('type');
+//    formVals.each(function () {
+//        var elementType = $(this).attr('type');
 
-        if (elementType === 'checkbox' || elementType === 'radio') {
-            $(this).prop('checked', false);
-        } else {
-            $(this).val('');
-        }
-    });
+//        if (elementType === 'checkbox' || elementType === 'radio') {
+//            $(this).prop('checked', false);
+//        } else {
+//            $(this).val('');
+//        }
+//    });
+//}
+
+
+function clearFormOnClick() {
+
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = true;
+
+    $('.active-btn-dps').removeClass('active');
 }
 
-$('#clear_form').click(function () {
-    clearForm($(this));
-});
+$('#clear_form').click(clearFormOnClick);
+
+
 
 
 $('#reset_search').click(function () {
@@ -203,17 +214,22 @@ $(document).ready(function () {
     checkboxBlue.checked = true;
     btnHideForm.hidden = true;
     ttAdvSearch.hidden = true;
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = true;
+    clear_form.hidden = true;
 });
 
 
 // Dont allow use the back back buttom function
-function DisableBackButton() {
-    window.history.forward()
-}
-DisableBackButton();
-window.onload = DisableBackButton;
-window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
-window.onunload = function () { void (0) }
+//function DisableBackButton() {
+//    window.history.forward()
+//}
+//DisableBackButton();
+//window.onload = DisableBackButton;
+//window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+//window.onunload = function () { void (0) }
 
 
 // Dropdown functions
@@ -357,8 +373,6 @@ var projectsDropdown = $("#projects_id");
 
 
 
-
-
 document.getElementById('btnShowForm').addEventListener('click', function (e) {
 
     ttAdvSearch.hidden = false;
@@ -367,9 +381,9 @@ document.getElementById('btnShowForm').addEventListener('click', function (e) {
     btnShowForm.hidden = true;
     btnHideForm.hidden = false;
 
+    clear_form.hidden = false;
+    $("#keyInfo").slideUp("slow");
 
-
-    $("#keyInfo").slideUp("slow")
 });
 
 document.getElementById('btnHideForm').addEventListener('click', function (e) {
@@ -380,7 +394,64 @@ document.getElementById('btnHideForm').addEventListener('click', function (e) {
     btnHideForm.hidden = true;
     btnShowForm.hidden = false;
 
+    clear_form.hidden = true;
     $("#keyInfo").slideDown("slow");
+
+    clearFormOnClick();
 });
+
+
+
+// this is a function to show and hide the dropdowns menus
+
+var hideCountryDp = document.querySelector(".hide-country-dps");
+var hideSiteDp = document.querySelector(".hide-site-dps");
+var hideClientDp = document.querySelector(".hide-client-dps");
+var hideCountryAndSiteDp = document.querySelector(".hide-countryAndsites-dps")
+
+document.getElementById("show-country-dp").addEventListener('click', function (e) {
+    hideCountryDp.hidden = false;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = true;
+});
+
+
+document.getElementById("show-site-dp").addEventListener('click', function (e) {
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = false;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = true;
+});
+document.getElementById("show-client-dp").addEventListener('click', function (e) {
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = false;
+    hideCountryAndSiteDp.hidden = true;
+
+
+});
+
+document.getElementById("show-countryAndSite-dp").addEventListener('click', function (e) {
+    hideCountryDp.hidden = true;
+    hideSiteDp.hidden = true;
+    hideClientDp.hidden = true;
+    hideCountryAndSiteDp.hidden = false;
+
+
+});
+
+
+// This is a function for the select buttons
+const links = document.querySelectorAll('.active-btn-dps');
+links.forEach(function (link) {
+    link.addEventListener('click', function () {
+        links.forEach(function (otherLink) {
+            otherLink.classList.remove('active');
+        });
+        link.classList.add('active');
+    });
+});
+
 
 
