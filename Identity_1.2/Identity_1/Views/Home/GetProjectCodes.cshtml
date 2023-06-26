@@ -6,13 +6,9 @@
 }
 
 
-
-
-
-
 <div id="form_container" class="row full-height pt-2">
 
-    <div class="col-10 firts-cnt">
+    <div class="firts-cnt">
 
         <h1 class="text-white text-center title-adv-search" id="ttAdvSearch">Advanced Search</h1>
 
@@ -28,63 +24,45 @@
             <div id="Form_">
 
                 <label style="color:var(--fe_white)">By:</label>
-                <div style="display:flex; flex-direction:row; justify-content:center; align-items:center; gap:1em;">
+                <div style="display:flex; flex-direction:column; justify-content:center; align-items:baseline; gap:1em;">
 
                     <div class="form-group">
-                        <a id="show-country-dp" class="btn-general hvr-icon-push active-btn-dps" style="background-color: #023047; color: var(--fe_white) ">
+                        <a id="show-country-dp" class="btn-general hvr-icon-push active-btn-dps">
                             <i class="fa-solid fa-earth-americas hvr-icon"></i>Country
                         </a>
+                        <div class="hide-country-dps ">
+                            @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
+                            @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".:: Select ::.", new { id = "country_id", @class = "form-control dropdown-input" })
+                        </div>
                     </div>
 
-
                     <div class="form-group">
-                        <a id="show-site-dp" class="btn-general hvr-icon-push active-btn-dps" style="background-color: #023047; color:var(--fe_white)">
-                            <i class="fa-solid fa-city hvr-icon"></i>Site
-                        </a>
-                    </div>
-
-
-                    <div class="form-group">
-                        <a id="show-client-dp" class="btn-general hvr-icon-push active-btn-dps" style="background-color: #023047; color:var(--fe_white)">
+                        <a id="show-client-dp" class="btn-general hvr-icon-push active-btn-dps">
                             <i class="fa-solid fa-user-tie hvr-icon"></i>Client
                         </a>
+
+                        <div class="hide-client-dps">
+                            @Html.LabelFor(x => x.parent_client_name, "client", htmlAttributes: new { @class = "control-label text-white" })
+                            @Html.DropDownList("parent_client_name", new SelectList(ViewBag.ListClients), ".:: Select ::.", new { id = "clients_id", @class = "form-control dropdown-input" })
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                        <a id="show-site-dp" class="btn-general hvr-icon-push active-btn-dps">
+                            <i class="fa-solid fa-city hvr-icon"></i>Site
+                        </a>
+                        <div class="hide-site-dps ">
+                            @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
+                            @Html.DropDownList("site_name", new SelectList(ViewBag.ListSites), ".:: Select ::.", new { id = "sites_id", @class = "form-control dropdown-input" })
+                        </div>
+                    </div>
+
 
 
                     <div class="form-group">
-                        <a id="show-countryAndSite-dp" class="btn-general hvr-icon-push active-btn-dps" style="background-color: #023047; color:var(--fe_white); width: 17em; ">
+                        <a id="show-countryAndSite-dp" class="btn-general hvr-icon-push active-btn-dps">
                             <i class="fa-solid fa-code-branch hvr-icon"></i>Country and Site
                         </a>
-                    </div>
-
-                </div>
-
-
-                <div class="form-group col-4 hide-country-dps">
-                    @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".::Select::.", new { id = "country_id", @class = "form-control dropdown-input" })
-                </div>
-
-                <div class="form-group col-4 hide-site-dps">
-                    @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.DropDownList("site_name", new SelectList(ViewBag.ListSites), ".::Select::.", new { id = "sites_id", @class = "form-control dropdown-input" })
-                </div>
-
-
-                <div class="form-group col-4 hide-client-dps">
-                    @Html.LabelFor(x => x.parent_client_name, "client", htmlAttributes: new { @class = "control-label text-white" })
-                    @Html.DropDownList("parent_client_name", new SelectList(ViewBag.ListClients), ".::Select::.", new { id = "clients_id", @class = "form-control dropdown-input" })
-                </div>
-
-
-                <div class="form-group col-4 hide-countryAndsites-dps">
-                    <div>
-                        @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
-                        @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".::Select::.", new { id = "country_id", @class = "form-control dropdown-input" })
-                    </div>
-                    <div>
-                        @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
-                        @Html.DropDownList("site_name", new SelectList(ViewBag.ListSites), ".::Select::.", new { id = "sites_id", @class = "form-control dropdown-input" })
                     </div>
                 </div>
 
@@ -105,7 +83,14 @@
 
 
 
-            <div class="form-row btns-search-cnt">
+            <div class="btns-search-cnt_first">
+                <a id="search_btn_all" class="btn-general hvr-icon-rotate">
+                    <i class="fa-solid fa-magnifying-glass hvr-icon"></i>Search All
+                </a>
+            </div>
+
+
+            <div class="form-row btns-search-cnt_second">
                 <div class="form-group col-6">
                     <a id="search_btn" class="btn-general hvr-icon-rotate">
                         <i class="fa-solid fa-magnifying-glass hvr-icon"></i>Search
@@ -115,7 +100,6 @@
                 <div class="form-group col-6">
                     <a id="clear_form" class="btn-general btn-clear hvr-icon-rotate" onclick="clearFormOnClick()">
                         <i class="fa-solid fa-brush hvr-icon"></i>Clear
- 
                     </a>
                 </div>
             </div>
@@ -123,10 +107,10 @@
 
         }
 
-    <div class="show-btns-cnt">
-        <a id="btnShowForm" class="btn_show_form hvr-icon-up"><i class="fa-solid fa-arrow-up fa-xl hvr-icon"></i>Advanced Search</a>
-        <a id="btnHideForm" class="btn_show_form hvr-icon-down"><i class="fa-solid fa-arrow-down fa-xl hvr-icon"></i>Search All Results</a>
-    </div>
+        <div class="show-btns-cnt">
+            <a id="btnShowForm" class="btn_show_form hvr-icon-up"><i class="fa-solid fa-arrow-up fa-xl hvr-icon"></i>Advanced Search</a>
+            <a id="btnHideForm" class="btn_show_form hvr-icon-down"><i class="fa-solid fa-arrow-down fa-xl hvr-icon"></i>Search All Results</a>
+        </div>
     </div>
 </div>
 
@@ -134,8 +118,8 @@
 
 <div id="table_container" class="row pt-2 pb-5 hidden">
     <div class="col-12">
-        <h2 class="text-center title" style="color:var(--fe_navy); margin-top:1.3em">Get Project Codes</h2>
-        <a  id="reset_search" class="btn-general hvr-icon-back"><i class="fa-solid fa-arrow-left fa-sm hvr-icon"></i> Back</a>
+        <h2 class="text-center title" style="color:var(--fe_navy); margin-top:14px">Get Project Codes</h2>
+        <a  id="reset_search" class="btn-general hvr-icon-back" ><i class="fa-solid fa-arrow-left fa-sm hvr-icon"></i> Back</a>
 
 
         <hr />

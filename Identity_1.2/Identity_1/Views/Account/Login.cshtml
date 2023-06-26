@@ -10,7 +10,7 @@
 
 <div class="main_cnt">
 
-    <h1>Welcome to ....</h1>
+    <h1>Welcome to Identity</h1>
     @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form_log" }))
     {
 
@@ -50,7 +50,7 @@
 
         if (error != null)
         {
-            <span style="color:red;">@error</span>
+            <span style="color:red; font-size:12px;">@error</span>
         }
 
     }

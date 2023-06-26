@@ -88,7 +88,7 @@ namespace Identity_1.Controllers
             List<string> sites = new List<string>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44323/swagger/");
+                client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com/");
                 client.DefaultRequestHeaders.Add("apiKey", "1C2CA9A6-96D3-42C2-939E-7C7C632A714B");
                 
                 var respTalk = client.GetAsync("/api/projectcodes/GetDataSites");
@@ -121,7 +121,7 @@ namespace Identity_1.Controllers
             List<string> sitesClients = new List<string>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44323/swagger/");
+                client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com/");
                 client.DefaultRequestHeaders.Add("apiKey", "1C2CA9A6-96D3-42C2-939E-7C7C632A714B");
 
                 var respTalk = client.GetAsync("/api/projectcodes/GetDataClients");
@@ -147,37 +147,37 @@ namespace Identity_1.Controllers
         }
 
 
-        // Get the projects list
-        //public JsonResult GetProjects(string country, string sites, string clients)
-        //{
+        //Get the Countries and Sites list
+        public JsonResult GetCountriesAndSites(string country)
+        {
 
-        //    List < Projects> projects = new List<Projects>();
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com/");
-        //        client.DefaultRequestHeaders.Add("apiKey", "1C2CA9A6-96D3-42C2-939E-7C7C632A714B");
+            List<string> CountriesSites = new List<string>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://identity-management-api.dev.sykes.com/");
+                client.DefaultRequestHeaders.Add("apiKey", "1C2CA9A6-96D3-42C2-939E-7C7C632A714B");
 
-        //        var respTalk = client.GetAsync("/api/projectcodes/GetDataProjects?country=" + country + "&siteName=" + sites + "&client=" + clients);
-        //        respTalk.Wait();
+                var respTalk = client.GetAsync("/api/projectcodes/GetDataCountry-Sites?country=" + country);
+                respTalk.Wait();
 
-        //        var result = respTalk.Result;
+                var result = respTalk.Result;
 
-        //        if (result.IsSuccessStatusCode)
-        //        {
-        //            var readJob = result.Content.ReadAsAsync<List<Projects>>();
-        //            readJob.Wait();
-        //            projects = readJob.Result;
-        //        }
-        //        else
-        //        {
-        //            projects = new List<Projects>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<List<string>>();
+                    readJob.Wait();
+                    CountriesSites = readJob.Result;
+                }
+                else
+                {
+                    CountriesSites = new List<string>();
 
-        //        }
-        //        ViewBag.ListProjects = projects;
-        //        return Json(projects, JsonRequestBehavior.AllowGet);
+                }
+                ViewBag.CountriesAndSites = CountriesSites;
+                return Json(CountriesSites, JsonRequestBehavior.AllowGet);
 
-        //    }
-        //}
+            }
+        }
 
 
 
@@ -196,10 +196,11 @@ namespace Identity_1.Controllers
 
                 var data = new
                 {
-                    sf_country = (model.sf_country != ".::Select::.") ? model.sf_country : null,
-                    site_name = (model.site_name != ".::Select::.") ? model.site_name: null,
-                    parent_client_name = (model.parent_client_name != ".::Select::.") ? model.parent_client_name : null,
-                    sf_project_code = (model.sf_project_code != ".::Select::.") ? model.sf_project_code : null,
+                    
+                    sf_country = (model.sf_country != ".:: Select ::.") ? model.sf_country : null,
+                    site_name = (model.site_name != ".:: Select ::.") ? model.site_name: null,
+                    parent_client_name = (model.parent_client_name != ".:: Select ::.") ? model.parent_client_name : null,
+                    sf_project_code = (model.sf_project_code != ".:: Select ::.") ? model.sf_project_code : null,
                     blue = true,
                     red = model.red
                 };
@@ -243,3 +244,4 @@ namespace Identity_1.Controllers
     
    
 }
+

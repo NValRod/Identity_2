@@ -1,10 +1,6 @@
 ﻿body {
     /*padding-top: 50px;*/
     /*padding-bottom: 20px;*/
-/*    background-image: url('images/Logo.png');
-    background-repeat:no-repeat;
-    background-position-x: 70em;
-    background-position-y: 35em;*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -12,7 +8,7 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-}
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -27,7 +23,7 @@ textarea {
     max-width: 280px;
 }
 
-/* GENERALS */
+/* Generals */
 
 :root {
     --fe_blue: #4949f9;
@@ -55,20 +51,49 @@ button i{
     color:var(--fe_white);
 }
 
-/* CUSTOM RULES */
+
+label {
+    margin-bottom: 0.1rem;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+
+div .bg-primary {
+    background-color: var(--fe_blue) !important;
+}
+
+.title-cnt {
+    background-color: var(--fe_white);
+}
+
 
 .hidden {
-    display:none;
+    display: none;
+}
+
+.full-height {
+    height: calc(100vh - 70px);
+    background-color: var(--fe_blue);
+    background-image: url('images/FoundEver_cover.png');
+    background-size: cover;
+    overflow: hidden;
+}
+
+#form_container {
+    overflow: hidden;
+}
+
+#table_container {
+    overflow-y: auto;
+}
+
+control-label {
+    text-transform: capitalize;
 }
 
 #view_title {
     min-height: 60px;
-}
-
-
-label {
-    text-transform: capitalize;
-    font-weight: 600;
 }
 
 
@@ -105,6 +130,42 @@ label {
 }
 
 
+.dropdown-input {
+    padding-left: 8px;
+    height: 2.4em !important;
+    border: 1px solid var(--fe_blue) !important;
+    cursor: pointer;
+    width: 24em;
+}
+
+.option {
+    appearance: none;
+    padding: 10px;
+}
+
+option:hover {
+    color: white !important;
+    background-color: #585858;
+}
+
+.option {
+    background-color: lightblue;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.dropdown-input option:checked {
+    color: var(--fe_navy);
+    font-weight: bold;
+    padding: 10px;
+}
+
+.dropdown-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--fe_green);
+}
+
 .dropdown-item:hover {
     background-color: var(--fe_blue) !important;
     background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1));
@@ -115,8 +176,8 @@ label {
 /* ------- Buttons ------- */
 
 .btn-general {
-    width: 12em;
-    height: 2.5em;
+    width: 11em;
+    height: 2.3em;
     background-color: var(--fe_green);
     color: var(--fe_navy);
     border-radius: 20px;
@@ -136,17 +197,24 @@ label {
     color:var(--fe_navy);
 }
 
+.btn-general.disabled {
+    background-image: linear-gradient(#747b818c,#788695ab);
+    cursor:not-allowed;
+}
+
 
 .btn-clear {
     background-color: var(--fe_gray);
-    color: var(--fe_white);
+    color: var(--fe_navy);
     flex-wrap: nowrap;
 }
+
+
 
 .btns-search-cnt {
     display: flex;
     flex-wrap: nowrap !important;
-    margin-top: 1.5em;
+    margin-top: 1em;
     margin-left: 0;
     align-items: center;
 }
@@ -182,11 +250,15 @@ div.dt-buttons {
     text-align: center;
 }
 
+#reset_search {
+    width: 10em;
+    margin-left:1em;
+}
 
 .btn-edit {
     width: 7em;
     background-color: #e9c46a;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--fe_white);
 }
 
@@ -197,7 +269,7 @@ div.dt-buttons {
 .btn-delete {
     width: 7em;
     background-color: #d62828;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--fe_white)
 }
 
@@ -233,8 +305,8 @@ div.dt-buttons {
 }
 
 #btnShowForm {
-    margin-bottom: -8em;
-    margin-top: -1em;
+    margin-bottom: -6em;
+    margin-top: 4em;
 }
 
 #btnHideForm{
@@ -244,8 +316,7 @@ div.dt-buttons {
 .show-btns-cnt {
     display: flex;
     justify-content: center;
-    margin-top: 1em;
-    padding: 1em 0;
+    padding:0;
 }
 
 
@@ -284,114 +355,19 @@ div.dt-buttons {
     transform: scale(1);
 }
 
-/* CSS for the checkbox */
-
-@supports (-webkit-appearance: none) or (-moz-appearance: none) {
-    .team-group input[type=checkbox] {
-        --active: var(--fe_gray);
-        --active-inner: #fff;
-        --focus: 2px rgba(39, 94, 254, .3);
-        --border: var(--fe_green);
-        --border-hover: #275EFE;
-        --background: #fff;
-        --disabled: #F6F8FF;
-        --disabled-inner: #E1E6F9;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        height: 30px;
-        outline: none;
-        display: inline-block;
-        vertical-align: top;
-        position: relative;
-        margin: 0;
-        cursor: pointer;
-        border: 1px solid var(--bc, var(--border));
-        background: var(--b, var(--background));
-        transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
-    }
-
-        .team-group input[type=checkbox]:after {
-            content: "";
-            display: block;
-            left: 0;
-            top: 0;
-            position: absolute;
-            transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
-        }
-
-        .team-group input[type=checkbox]:checked {
-            --b: var(--active);
-            --bc: var(--active);
-            --d-o: .3s;
-            --d-t: .6s;
-            --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
-        }
-
-        .team-group input[type=checkbox]:disabled {
-            --b: var(--disabled);
-            cursor: not-allowed;
-            opacity: 0.9;
-        }
-
-            .team-group input[type=checkbox]:disabled:checked {
-                --b: var(--disabled-inner);
-                --bc: var(--border);
-            }
-
-            .team-group input[type=checkbox]:disabled + label {
-                cursor: not-allowed;
-            }
-
-        .team-group input[type=checkbox]:hover:not(:checked):not(:disabled) {
-            --bc: var(--border-hover);
-        }
-
-        .team-group input[type=checkbox]:focus {
-            box-shadow: 0 0 0 var(--focus);
-        }
-
-        .team-group input[type=checkbox]:not(.switch) {
-            width: 30px; /* the checkbox width*/
-        }
-
-            .team-group input[type=checkbox]:not(.switch):after {
-                opacity: var(--o, 0);
-            }
-
-            .team-group input[type=checkbox]:not(.switch):checked {
-                --o: 1;
-            }
-
-        .team-group input[type=checkbox] + label {
-            display: inline-block;
-            vertical-align: middle;
-            cursor: pointer;
-            margin-left: 4px;
-        }
-
-        .team-group input[type=checkbox]:not(.switch) {
-            border-radius: 7px;
-        }
-
-            .team-group input[type=checkbox]:not(.switch):after {
-                width: 9px;
-                height: 9px;
-                border: 3px solid var(--fe_white);
-                border-top: 0;
-                border-left: 0;
-                left: 10px;
-                top: 8px;
-                transform: rotate(var(--r, 45deg));
-            }
-
-            .team-group input[type=checkbox]:not(.switch):checked {
-                --r: 47deg;
-            }
+.btns-search-cnt_first {
+    margin-top: 6em;
+    margin-bottom: -1em;
 }
 
+#search_btn, #clear_form {
+    font-size: 14.5px;
+    width: 10em;
+    height: 2em;
+    padding: 17px 10px;
+}
 
-
-/* ------- Form login ------- */
+/* ------- Forms ------- */
 .main_cnt {
     display: flex;
     align-items: center;
@@ -408,19 +384,19 @@ div.dt-buttons {
 
 .main_cnt h1 {
     color: var(--fe_white);
-    font-size: 4.5em;
+    font-size: 3.5em;
     font-weight: 800;
     padding: 10px;
-    margin-top: -1em;
-    padding-bottom:1em;
+    margin-top: 0em;
+    padding-bottom: 15px;
 }
 
 
 .main_cnt form {
     background-color: var(--fe_white);
-    height: 31.5em;
-    width: 23.8em;
-    padding: 2em;
+    height: 30.5em;
+    width: 23em;
+    padding: 1.6em;
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -428,21 +404,19 @@ div.dt-buttons {
     border-radius: 10px;
 }
 
-
-
-
-
 .form_log h2 {
-    font-size: 1.3em;
-    margin-top: 1em;
-    font-weight:600;
+    font-size: 1.2em;
+    margin-top: 13px;
+    margin-bottom: 19px;
+    font-weight: 600;
     color: var(--fe_navy);
 }
 
-.form_log label{
-    font-weight:500;
+.form_log label {
+    font-weight: 600;
     color: var(--fe_navy);
-    margin-bottom:-.5px;
+    font-size: 12px;
+    padding-left: 4px;
 }
 
 .form_log input {
@@ -478,12 +452,6 @@ div.dt-buttons {
     color:red;
 }
 
-form-control {
-    color: var(--fe_navy);
-    background-color: var(--fe_white);
-    font-weight: 500;
-}
-
 
 .drop_login {
     border-radius: 11px;
@@ -494,7 +462,7 @@ form-control {
 
 
 .form_log input, .drop_login {
-    width: 32vh;
+    width: 36vh;
 }
 
 
@@ -512,40 +480,17 @@ form-control {
 }
 
 #Form_ {
-    padding: 0 5em;
+    padding: 3em 0 1em 0;
 }
 
-.title-adv-search{
-    color:red;
-}
 
+.form-control:disabled, .form-control[readonly] {
+    background-color: #d5d4d4;
+    opacity: 0.9;
+    cursor:not-allowed;
+}
 
 /* ------- Tables ------- */
-div .bg-primary {
-    background-color: var(--fe_blue) !important;
-}
-
-.title-cnt{
-    background-color:var(--fe_white);
-}
-
-
-.hidden {
-    display: none;
-}
-
-.full-height {
-    height: calc(100vh - 73px); /* In the server should be at 78px*/
-    background-color: var(--fe_blue);
-    background-image: url('images/FoundEver_cover.png');
-    background-size: cover;
-    overflow-y: hidden;
-}
-
-
-control-label {
-    text-transform: capitalize;
-}
 
 
 .swal2-styled.swal2-confirm {
@@ -565,27 +510,24 @@ control-label {
 }
 
 
-
-.form-control:disabled, .form-control[readonly] {
-    background-color: #d5d4d4;
-    opacity: 0.9;
-    cursor:not-allowed;
-}
-
 .title{
     font-size:3em;
     font-weight:600;
     margin-bottom:1.2em;
 }
 
-.title-adv-search{
-    padding:1em 0;
+.title-adv-search {
     font-weight: 700;
+    margin-top: 10px;
 }
 
 
+
 .form-control {
-    border-radius: 10px;
+    color: var(--fe_navy);
+    background-color: var(--fe_white);
+    font-weight: 500;
+    border-radius: 20px;
 }
 
 input[type="radio"], input[type="checkbox"]{
@@ -597,18 +539,20 @@ input[type="radio"], input[type="checkbox"]{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top:-2em;
 }
 
 .firts-cnt {
     display: flex !important;
     margin: 0 auto;
-    margin-top:3em;
+    margin-top: 1em;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     flex-direction: column;
     border-radius: 45px;
     border: 1px solid var(--fe_white);
-    height: 80%;
+    width:80%;
+    height: 90%;
     padding: 3em;
     backdrop-filter: blur(6px);
 }
@@ -663,7 +607,6 @@ div.dataTables_wrapper div.dataTables_length label {
 
 .table-hover tbody tr:hover {
     color: var(--fe_navy);
-    background-color: #e7fbf1;
 }
 
 thead{
@@ -710,6 +653,7 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
     color:var(--fe_white);
 }
 
+
 .table-user-roles:hover{
     background-color:var(--fe_blue) !important;
     color:var(--fe_white)!important;
@@ -719,6 +663,9 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
 .table td {
     vertical-align: middle;
 }
+
+
+
 
 
 /* ------- CRUDs style ------- */
@@ -732,16 +679,9 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
 }
 
 
-.form-create{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
-
-.form-group-modal {
-    margin-left: 6em;
-    width: 33em;
+.form-create {
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -750,134 +690,99 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before
     align-items: center;
     justify-content: center;
     margin-top: 3em;
-    margin-left: 2em;
+
 }
 
-.modal-body{
-    padding:2em 1em;
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.modal-content{
-    border-radius:11px;
+.modal-content {
+    border-radius: 11px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1em;
+    width: 28em;
+}
+
+.hide-countryAndsites-dps {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: -6.5em;
 }
 
 
-/* ------- Media querys keep it at the bottom pls ------- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-group-modal input{
+    width:33em;
+}
+
+dl div {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid var(--fe_navy);
+    padding: 7px 20px 0px 20px;
+    border-radius: 11px;
+}
+
+.active-btn-dps {
+    background-color: #023047;
+    color: var(--fe_white);
+    width: 14.5em;
+}
+
+.active-btn-dps:hover{
+    color:var(--fe_white)
+}
+.active-btn-dps.active {
+    background-color: var(--fe_white) !important;
+    color: var(--fe_navy) !important;
+}
+
+.hide-country-dps, .hide-site-dps, .hide-client-dps{
+    margin-top:-2em;
+}
+
+
+.hide-site-dps.hideSiteDp {
+    padding: 1em 0;
+}
+
+
+.control-label {
+    font-size: 12.5px;
+    padding-left: 1.8em;
+}
+
+
+/* -------  IMPORTANT: Mediaquerys keep it at the bottom pls ------- */
 /* Media query for the scroll */
 
 
-
-@media only screen and (max-width: 1440px) {
-    #btnShowForm {
-        margin-top: -1em;
-        margin-bottom: -8em;
-    }
-
-    #search_btn {
-        width: 9em;
-        height: 2.3em;
-        font-size: 15px;
-    }
-
-    .firts-cnt{
-        height:83%;
-        margin-top:2em;
-    }
-
-    .teams-cnt {
-        gap: 1.5em;
-        margin-left: 17em;
-    }
-
-    #btnHideForm {
-        margin-top: -18px;
-    }
-
-    #Form_ {
-        padding: 0 1em;
-    }
-}
-
-
-
-
-/* Media query for the login */
-
-@media only screen and (max-width: 1368px) {
-    .main_cnt form {
-        background-color: var(--fe_white);
-        height: 29.5em;
-        width: 21.8em;
-        padding: 2em;
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-        align-items: center;
-        border-radius: 10px;
-    }
-
-    .main_cnt h1 {
-        color: var(--fe_white);
-        font-size: 3.5em;
-        font-weight: 800;
-        padding: 10px;
-        margin-top: 0em;
-        padding-bottom: 27px;
-    }
-
-
+@media only screen and (min-width: 1200px) {
     .form_log input, .drop_login {
         width: 31vh;
     }
+}
 
-    .form_log h2 {
-        font-size: 1.1em;
+
+@media screen and (min-width:780px) and (max-width:1200px) {
+
+    #btnShowForm {
+        margin-top: 2em;
+    }
+
+    #search_btn_all{
+        margin-top:-2em;
     }
 }
-
-/* Media query for the tables */
-
-@media (min-width: 1200px) {
-    .container, .container-sm, .container-md, .container-lg, .container-xl {
-        max-width: 105em;
-    }
-}
-
-.dropdown-input {
-    border-radius: 11px;
-    padding-left: 8px;
-    height: 2.5em !important;
-    border: 1px solid var(--fe_blue) !important;
-    cursor: pointer;
-}
-
-.option{
-  appearance:none;
-  padding: 10px;
-}
-
-option:hover{
-    color: white !important;
-    background-color: #585858;
-}
-
-.option {
-    background-color: lightblue;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-}
-
-.dropdown-input option:checked {
-    color: var(--fe_navy);
-    font-weight: bold;
-    padding:10px;
-}
-
-
-
-.dropdown-input:focus {
-    outline: none;
-    box-shadow: 0 0 10px var(--fe_green);
-}
-

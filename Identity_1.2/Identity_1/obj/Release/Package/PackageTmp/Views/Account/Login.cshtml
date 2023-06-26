@@ -10,7 +10,7 @@
 
 <div class="main_cnt">
 
-    <h1>Welcome to ....</h1>
+    <h1>Welcome to Identity</h1>
     @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form_log" }))
     {
 
@@ -44,11 +44,13 @@
         </div>
 
 
-        <button type="submit" class="btn-general" value="Login">log in</button>
+        <button type="submit" class="btn-general hvr-icon-back" value="Login"><i class="fa-solid fa-right-to-bracket fa-sm hvr-icon" style="color:var(--fe_navy)" ></i>log in</button>
+
+
 
         if (error != null)
         {
-            <span style="color:red;">@error</span>
+            <span style="color:red; font-size:12px;">@error</span>
         }
 
     }

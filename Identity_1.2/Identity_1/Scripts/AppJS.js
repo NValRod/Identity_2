@@ -12,20 +12,14 @@ function setRequired() {
     });
 }
 
-//function clearForm(e) {
-//    var modal_attr = e.parents('form:first');
-//    var formVals = modal_attr.find('input:visible, select:visible, textarea:visible');
 
-//    formVals.each(function () {
-//        var elementType = $(this).attr('type');
 
-//        if (elementType === 'checkbox' || elementType === 'radio') {
-//            $(this).prop('checked', false);
-//        } else {
-//            $(this).val('');
-//        }
-//    });
-//}
+// Clean the dropdowns function
+function populateDropdown(id) {
+    var content = '<option>.:: Select ::.</option>';
+
+    $(id).empty().html(content);
+}
 
 
 function clearFormOnClick() {
@@ -33,42 +27,55 @@ function clearFormOnClick() {
     hideCountryDp.hidden = true;
     hideSiteDp.hidden = true;
     hideClientDp.hidden = true;
-    hideCountryAndSiteDp.hidden = true;
 
     $('.active-btn-dps').removeClass('active');
+
+    dropdownClear('GetCountries', '#country_id');
+    dropdownClear('GetClients', '#clients_id');
+    dropdownClear('GetSites', '#sites_id');
+
+    var searchBtn = $('#search_btn');
+    searchBtn.addClass('disabled');
+    searchBtn.prop('disabled', true);
+
 }
 
-$('#clear_form').click(clearFormOnClick);
-
-
-
+function dropdownClear(controller, id) {
+    $.ajax({
+        url: controller,
+        type: 'GET',
+        dataType: 'Json',
+        success: function (data) {
+            console.log(data);
+            var dropdown = $(id);
+            populateDropdown(dropdown, data);
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr);
+            console.log(status);
+            console.log(error);
+        }
+    });
+}
 
 $('#reset_search').click(function () {
     $('#form_container').slideDown();
     $('#table_container').slideUp();
-    
+
     $('#clear_form').click();
     $('#dataTable tbody').empty();
 
-
-
-    // Clean the dropdowns function
-    function populateDropdown(id) {
-        var content = '<option>.::Select::.</option>';
-
-        $(id).empty().html(content);
-    }
-    populateDropdown("#sites_id");
-    populateDropdown("#clients_id");
-    populateDropdown("#projects_id");
 });
 
-$('#search_btn').click(function (e) {
+
+
+
+function searchBtnClick(e) {
     e.preventDefault();
 
     var modal_attr = $(this).parents('form:first');
     var formVals = modal_attr.find('input[required]:visible, select[required]:visible, textarea[required]:visible');
-    
+
     var url_parameter = modal_attr[0].attributes.action.nodeValue;
     var data_parameter = modal_attr.serialize();
 
@@ -82,7 +89,7 @@ $('#search_btn').click(function (e) {
             timer: 2500,
             timerProgressBar: true,
             didOpen: () => {
-                Swal.showLoading();                
+                Swal.showLoading();
             }
         });
 
@@ -93,7 +100,6 @@ $('#search_btn').click(function (e) {
             data: data_parameter,
             cache: false,
             success: function (response) {
-
                 if (response !== null) {
                     if (response.code === 1 && response.content.length === 0) {
                         Swal.fire({
@@ -103,7 +109,6 @@ $('#search_btn').click(function (e) {
                         });
                     }
                     else if (response.code === 1 && response.content.length > 0) {
-
                         table.destroy();
                         $('#dataTable tbody').empty();
 
@@ -126,9 +131,6 @@ $('#search_btn').click(function (e) {
 
                         $('#dataTable tbody').html(tablebody);
 
-                        //table = $('#dataTable').DataTable();
-
-                      
                         table = $('#dataTable').DataTable({
                             dom: 'Bfrtip',
                             lengthMenu: [
@@ -150,28 +152,8 @@ $('#search_btn').click(function (e) {
                             ]
                         });
 
-                        //$('#form_container').slideToggle(); 
-                        //$('#table_container').slideToggle(); 
-
-                        //$('#form_container').hide('slide');
-                        //$('#table_container').show('slide');  
-
-                        $('#form_container').slideUp();                        
+                        $('#form_container').slideUp();
                         $('#table_container').slideDown();
-
-
-                        //$('#table_container').slideDown();
-                        //$('#form_container').hide();                        
-                        
-                        
-                        //$('#form_container').addClass('animate__animated animate__slideOutLeft');  
-                        
-
-                        //setTimeout(function () {
-                        //    $('#form_container').hide();
-                        //    $('#table_container').removeClass('hidden');
-                        //    $('#table_container').addClass('animate__animated animate__slideInRight');
-                        //}, 500);
 
                     }
                     else if (response.code === 0) {
@@ -204,11 +186,21 @@ $('#search_btn').click(function (e) {
             text: 'All the fields (*) are required'
         });
     }
-});
+
+}
+
+
+
+// Asignar el evento de clic al botón de búsqueda
+
+$('#search_btn_all').click(searchBtnClick);
+
+
 
 
 $(document).ready(function () {
     setRequired();
+    enableSearchButton();
     table = $('#dataTable').DataTable();
     Form_.hidden = true;
     checkboxBlue.checked = true;
@@ -217,8 +209,9 @@ $(document).ready(function () {
     hideCountryDp.hidden = true;
     hideSiteDp.hidden = true;
     hideClientDp.hidden = true;
-    hideCountryAndSiteDp.hidden = true;
+    bsc_second.hidden = true;
     clear_form.hidden = true;
+
 });
 
 
@@ -232,52 +225,45 @@ $(document).ready(function () {
 //window.onunload = function () { void (0) }
 
 
-// Dropdown functions
-
-//function populateDropdown(element, data) {
-//    var content = '<option>.::Select::.</option>';
-//    $.each(data, function (index, val) {
-//        content += `<option>${val}</option>`;
-//    });
-//    element.empty().html(content);
-//}
-
-//$("#country_id").change(function () {
-//    var dropdown = $(this);
-//    var selectVal = dropdown.val();
-//    var sitesDropdown = $("#sites_id");
-//    var clientsDropdown = $("#clients_id");
-//    var projectsDropdown = $("#projects_id");
-//    populateDropdown(sitesDropdown, []);
-//    populateDropdown(clientsDropdown, []);
-//    populateDropdown(projectsDropdown, []);
 
 
-//    if (selectVal) {
-//        $.ajax({
-//            url: 'GetSites',
-//            type: 'GET',
-//            dataType: 'Json',
-//            success: function (data) {
-//                console.log(data);
-//                var sitesDropdown = $("#sites_id");
-//                populateDropdown(sitesDropdown, data);
-//            },
-//            error: function (xhr, status, error) {
-//                console.log(xhr);
-//                console.log(status);
-//                console.log(error);
-//            }
-//        });
-//    } else {
-//        var sitesDropdown = $("#sites_id");
-//        var clientsDropdown = $("#clients_id");
-//        var projectsDropdown = $("#projects_id");
-//        populateDropdown(sitesDropdown, []);
-//        populateDropdown(clientsDropdown, []);
-//        populateDropdown(projectsDropdown, []);
-//    }
-//});
+function populateDropdown(element, data) {
+    var content = '<option>.:: Select ::.</option>';
+    $.each(data, function (index, val) {
+        content += `<option>${val}</option>`;
+    });
+    element.empty().html(content);
+}
+
+$("#country_id").change(function () {
+    var dropdown = $(this);
+    var countryDropdown = $("#country_id").val();
+    var selectVal = dropdown.val();
+    var sitesDropdown = $("#sites_id");
+
+    populateDropdown(sitesDropdown, []);
+
+    if (selectVal) {
+        $.ajax({
+            url: 'GetCountriesAndSites?country=' + countryDropdown,
+            type: 'GET',
+            dataType: 'Json',
+            success: function (data) {
+                console.log(data);
+                var sitesDropdown = $("#sites_id");
+                populateDropdown(sitesDropdown, data);
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+            }
+        });
+    } else {
+        var sitesDropdown = $("#sites_id");
+        populateDropdown(sitesDropdown, []);
+    }
+});
 
 //$("#sites_id").change(function () {
 //    var sitesDropdown = $(this).val();
@@ -346,7 +332,7 @@ $(document).ready(function () {
 
 
 
-// Show and Hide forms Func
+ //Show and Hide forms Func
 
 
 var checkboxBlue = document.getElementById('checkbox-team-blue');
@@ -357,8 +343,6 @@ var btnShowForm = document.getElementById('btnShowForm');
 var btnHideForm = document.getElementById('btnHideForm');
 
 var checkForSite = document.getElementById('checkForSite');
-
-
 
 var site_id = document.getElementById('sites_id');
 var client_id = document.getElementById('clients_id');
@@ -371,15 +355,18 @@ var clientsDropdown = $("#clients_id");
 var projectsDropdown = $("#projects_id");
 
 
+var bsc_first = document.querySelector(".btns-search-cnt_first");
+var bsc_second = document.querySelector(".btns-search-cnt_second");
 
 
 document.getElementById('btnShowForm').addEventListener('click', function (e) {
-
     ttAdvSearch.hidden = false;
     Form_.hidden = false;
     checkboxBlue.checked = false;
     btnShowForm.hidden = true;
     btnHideForm.hidden = false;
+    bsc_first.hidden = true;
+    bsc_second.hidden = false;
 
     clear_form.hidden = false;
     $("#keyInfo").slideUp("slow");
@@ -393,6 +380,8 @@ document.getElementById('btnHideForm').addEventListener('click', function (e) {
     checkboxBlue.checked = true;
     btnHideForm.hidden = true;
     btnShowForm.hidden = false;
+    bsc_first.hidden = false;
+    bsc_second.hidden = true;
 
     clear_form.hidden = true;
     $("#keyInfo").slideDown("slow");
@@ -413,7 +402,7 @@ document.getElementById("show-country-dp").addEventListener('click', function (e
     hideCountryDp.hidden = false;
     hideSiteDp.hidden = true;
     hideClientDp.hidden = true;
-    hideCountryAndSiteDp.hidden = true;
+
 });
 
 
@@ -421,24 +410,20 @@ document.getElementById("show-site-dp").addEventListener('click', function (e) {
     hideCountryDp.hidden = true;
     hideSiteDp.hidden = false;
     hideClientDp.hidden = true;
-    hideCountryAndSiteDp.hidden = true;
+
 });
 document.getElementById("show-client-dp").addEventListener('click', function (e) {
     hideCountryDp.hidden = true;
     hideSiteDp.hidden = true;
     hideClientDp.hidden = false;
-    hideCountryAndSiteDp.hidden = true;
-
-
 });
 
 document.getElementById("show-countryAndSite-dp").addEventListener('click', function (e) {
-    hideCountryDp.hidden = true;
-    hideSiteDp.hidden = true;
+    hideCountryDp.hidden = false;
+    hideSiteDp.hidden = false;
     hideClientDp.hidden = true;
-    hideCountryAndSiteDp.hidden = false;
 
-
+    hideSiteDp.addClass('hideSiteDp');
 });
 
 
@@ -453,5 +438,33 @@ links.forEach(function (link) {
     });
 });
 
+ //This is a function for disabled the search button
+function enableSearchButton() {
+    var countryDropdown = $('#country_id');
+    var siteDropdown = $('#sites_id');
+    var clientDropdown = $('#clients_id');
 
+
+    var searchBtn = $('#search_btn');
+
+    searchBtn.prop('disabled', true);
+    function checkDropdowns() {
+        if (countryDropdown.val() || siteDropdown.val() || clientDropdown.val()) {
+            searchBtn.prop('disabled', false);
+            searchBtn.removeClass('disabled');
+            searchBtn.on('click', searchBtnClick);
+        } else {
+            searchBtn.prop('disabled', true);
+            searchBtn.addClass('disabled');
+            searchBtn.off('click', searchBtnClick);           
+        }
+    }
+
+    checkDropdowns();
+
+    countryDropdown.on('change', checkDropdowns);
+    siteDropdown.on('change', checkDropdowns);
+    clientDropdown.on('change', checkDropdowns);
+
+}
 
