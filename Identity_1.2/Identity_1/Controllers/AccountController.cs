@@ -44,7 +44,7 @@ namespace Identity_1.Controllers
                             Session["userName"] = users.userName;
                             Session["roleUser"] = users.IdRol;
                             FormsAuthentication.SetAuthCookie(userN, true);
-                            return RedirectToAction("GetProjectCodes", "Home");
+                            return RedirectToAction("IdentityManagement", "Home");
                         }
                     }
 
@@ -56,7 +56,7 @@ namespace Identity_1.Controllers
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return View(new { error = "there was an exception during execution" });
             }

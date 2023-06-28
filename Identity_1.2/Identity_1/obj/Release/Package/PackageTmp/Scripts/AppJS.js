@@ -38,6 +38,7 @@ function clearFormOnClick() {
     searchBtn.addClass('disabled');
     searchBtn.prop('disabled', true);
 
+
 }
 
 function dropdownClear(controller, id) {
@@ -133,24 +134,23 @@ function searchBtnClick(e) {
 
                         table = $('#dataTable').DataTable({
                             dom: 'Bfrtip',
-                            lengthMenu: [
-                                [10, 25, 50, -1],
-                                [10, 25, 50, 'All']
-                            ],
                             buttons: [
                                 {
                                     extend: 'pageLength',
                                     text: 'Show',
-                                    className: 'buttons-excel',
+                                    className: 'btns-table btn-entries',
                                 },
 
                                 {
                                     extend: 'excel',
                                     text: 'Export Excel',
-                                    className: 'buttons-excel',
-                                },
+                                    className: 'btns-table btn-excel',
+                                }
                             ]
                         });
+
+
+
 
                         $('#form_container').slideUp();
                         $('#table_container').slideDown();
@@ -201,6 +201,7 @@ $('#search_btn_all').click(searchBtnClick);
 $(document).ready(function () {
     setRequired();
     enableSearchButton();
+    $('.select2').select2();
     table = $('#dataTable').DataTable();
     Form_.hidden = true;
     checkboxBlue.checked = true;
@@ -211,6 +212,8 @@ $(document).ready(function () {
     hideClientDp.hidden = true;
     bsc_second.hidden = true;
     clear_form.hidden = true;
+
+
 
 });
 
@@ -467,4 +470,7 @@ function enableSearchButton() {
     clientDropdown.on('change', checkDropdowns);
 
 }
+
+
+
 

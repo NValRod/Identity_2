@@ -1,0 +1,145 @@
+﻿@model Identity_1.Models.ProjectCodes
+
+@{
+    /**/
+    ViewBag.Title = "IdentityManagement";
+}
+
+
+<div id="form_container" class="row full-height pt-2">
+
+    <div class="firts-cnt">
+
+        <h1 class="text-white text-center title-adv-search" id="ttAdvSearch">Advanced Search</h1>
+
+        <div id="keyInfo">
+            <h2 class="text-white text-center title" style="margin-top:-2em">Get Project Codes</h2>
+            <h4 style="color:var(--fe_white); font-weight:500; padding: 0 4em">If you are looking for all the results, click the search button, you can also go to advanced search and select the dropdown menus that you require, remember you need to check the boxes to enable the menus.</h4>
+        </div>
+
+
+        @using (Html.BeginForm("IdentityManagement", "Home", FormMethod.Post, new { @class = "form-cnt" }))
+        {
+
+            <div id="Form_">
+
+                <label style="color:var(--fe_white)">By:</label>
+                <div style="display:flex; flex-direction:column; justify-content:center; align-items:baseline; gap:1em;">
+
+                    <div class="form-group-inputs">
+                        <a id="show-country-dp" class="btn-general hvr-icon-push active-btn-dps">
+                            <i class="fa-solid fa-earth-americas hvr-icon"></i>Country
+                        </a>
+                        <div class="hide-country-dps ">
+                            @Html.LabelFor(x => x.sf_country, "Country", htmlAttributes: new { @class = "control-label text-white" })
+                            @Html.DropDownList("sf_country", new SelectList(ViewBag.ListCountries), ".:: Select ::.", new { id = "country_id", @class = "form-control dropdown-input select2" })
+                        </div>
+                    </div>
+
+                    <div class="form-group-inputs">
+                        <a id="show-client-dp" class="btn-general hvr-icon-push active-btn-dps">
+                            <i class="fa-solid fa-user-tie hvr-icon"></i>Client
+                        </a>
+
+                        <div class="hide-client-dps">
+                            @Html.LabelFor(x => x.parent_client_name, "client", htmlAttributes: new { @class = "control-label text-white" })
+                            @Html.DropDownList("parent_client_name", new SelectList(ViewBag.ListClients), ".:: Select ::.", new { id = "clients_id", @class = "form-control dropdown-input select2" })
+                        </div>
+                    </div>
+
+                    <div class="form-group-inputs">
+                        <a id="show-site-dp" class="btn-general hvr-icon-push active-btn-dps">
+                            <i class="fa-solid fa-city hvr-icon"></i>Site
+                        </a>
+                        <div class="hide-site-dps ">
+                            @Html.LabelFor(x => x.site_name, "site name", htmlAttributes: new { @class = "control-label text-white" })
+                            @Html.DropDownList("site_name", new SelectList(ViewBag.ListSites), ".:: Select ::.", new { id = "sites_id", @class = "form-control dropdown-input select2" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group-inputs">
+                        <a id="show-countryAndSite-dp" class="btn-general hvr-icon-push active-btn-dps">
+                            <i class="fa-solid fa-code-branch hvr-icon"></i>Country and Site
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="teams-cnt" style="display:none">
+                    <div class="form-group-inputs team-group">
+                        @Html.LabelFor(x => x.blue, "team Blue", htmlAttributes: new { @class = "control-label text-white" })
+                        @Html.EditorFor(x => x.blue, null, new { htmlAttributes = new { id = "checkbox-team-blue", @class = "form-control" } })
+                        <div class="checkmark"></div>
+                    </div>
+                    <div class="form-group-inputs team-group">
+                        @Html.LabelFor(x => x.red, "team Red", htmlAttributes: new { @class = "control-label text-white" })
+                        @Html.EditorFor(x => x.red, null, new { htmlAttributes = new { id = "checkbox-team-blue", @class = "form-control" } })
+                        <div class="checkmark"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="btns-search-cnt_first">
+                <a id="search_btn_all" class="btn-general hvr-icon-rotate">
+                    <i class="fa-solid fa-magnifying-glass hvr-icon"></i>Search All
+                </a>
+            </div>
+
+
+            <div class="form-row btns-search-cnt_second">
+                <div class="form-group col-6">
+                    <a id="search_btn" class="btn-general hvr-icon-rotate">
+                        <i class="fa-solid fa-magnifying-glass hvr-icon"></i>Search
+                    </a>
+                </div>
+
+                <div class="form-group col-6">
+                    <a id="clear_form" class="btn-general btn-clear hvr-icon-rotate" onclick="clearFormOnClick()">
+                        <i class="fa-solid fa-brush hvr-icon"></i>Clear
+                    </a>
+                </div>
+            </div>
+
+
+        }
+
+        <div class="show-btns-cnt">
+            <a id="btnShowForm" class="btn_show_form hvr-icon-up"><i class="fa-solid fa-arrow-up fa-xl hvr-icon"></i>Advanced Search</a>
+            <a id="btnHideForm" class="btn_show_form hvr-icon-down"><i class="fa-solid fa-arrow-down fa-xl hvr-icon"></i>Search All Results</a>
+        </div>
+    </div>
+</div>
+
+@* Tables *@
+
+<div id="table_container" class="row pt-2 pb-5 hidden">
+    <div class="col-12">
+        <h2 class="text-center title" style="color:var(--fe_navy); margin-top:14px">Get Project Codes</h2>
+        <a  id="reset_search" class="btn-general hvr-icon-back" ><i class="fa-solid fa-arrow-left fa-sm hvr-icon"></i> Back</a>
+
+
+        <hr />
+
+        <table class="table table-bordered table-hover table-sm" id="dataTable">
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Company Description</th>
+                    <th>Country</th>
+                    <th>Site Name</th>
+                    <th>Department Name</th>
+                    <th>Lob Name</th>
+                    <th>Project Code</th>
+                    <th>Blue</th>
+                    <th>Red</th>
+                    <th>Oracle Site ID</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>

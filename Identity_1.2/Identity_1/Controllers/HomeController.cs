@@ -26,7 +26,7 @@ namespace Identity_1.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetProjectCodes()
+        public ActionResult IdentityManagement()
         {
     
             // It must be write this line every time some method is added
@@ -182,7 +182,7 @@ namespace Identity_1.Controllers
 
 
         [HttpPost]
-        public JsonResult GetProjectCodes(ProjectCodes model)
+        public JsonResult IdentityManagement(ProjectCodes model)
         {
             object returnVal = new object();
 

@@ -38,24 +38,20 @@ function clearFormOnClick() {
     searchBtn.addClass('disabled');
     searchBtn.prop('disabled', true);
 
+
 }
 
-function dropdownClear(controller, id) {
-    $.ajax({
-        url: controller,
-        type: 'GET',
-        dataType: 'Json',
-        success: function (data) {
+function dropdownClear(controller, dropdown) {
+    $.getJSON(controller)
+        .done(function (data) {
             console.log(data);
-            var dropdown = $(id);
-            populateDropdown(dropdown, data);
-        },
-        error: function (xhr, status, error) {
+            populateDropdown($(dropdown), data);
+        })
+        .fail(function (xhr, status, error) {
             console.log(xhr);
             console.log(status);
             console.log(error);
-        }
-    });
+        });
 }
 
 $('#reset_search').click(function () {
@@ -133,24 +129,23 @@ function searchBtnClick(e) {
 
                         table = $('#dataTable').DataTable({
                             dom: 'Bfrtip',
-                            lengthMenu: [
-                                [10, 25, 50, -1],
-                                [10, 25, 50, 'All']
-                            ],
                             buttons: [
                                 {
                                     extend: 'pageLength',
                                     text: 'Show',
-                                    className: 'buttons-excel',
+                                    className: 'btns-table btn-entries',
                                 },
 
                                 {
                                     extend: 'excel',
                                     text: 'Export Excel',
-                                    className: 'buttons-excel',
-                                },
+                                    className: 'btns-table btn-excel',
+                                }
                             ]
                         });
+
+
+
 
                         $('#form_container').slideUp();
                         $('#table_container').slideDown();
@@ -201,6 +196,7 @@ $('#search_btn_all').click(searchBtnClick);
 $(document).ready(function () {
     setRequired();
     enableSearchButton();
+    $('.select2').select2();
     table = $('#dataTable').DataTable();
     Form_.hidden = true;
     checkboxBlue.checked = true;
@@ -211,7 +207,6 @@ $(document).ready(function () {
     hideClientDp.hidden = true;
     bsc_second.hidden = true;
     clear_form.hidden = true;
-
 });
 
 
@@ -237,20 +232,18 @@ function populateDropdown(element, data) {
 
 $("#country_id").change(function () {
     var dropdown = $(this);
-    var countryDropdown = $("#country_id").val();
-    var selectVal = dropdown.val();
+    var countryDropdown = dropdown.val();
     var sitesDropdown = $("#sites_id");
 
     populateDropdown(sitesDropdown, []);
 
-    if (selectVal) {
+    if (countryDropdown) {
         $.ajax({
             url: 'GetCountriesAndSites?country=' + countryDropdown,
             type: 'GET',
             dataType: 'Json',
             success: function (data) {
                 console.log(data);
-                var sitesDropdown = $("#sites_id");
                 populateDropdown(sitesDropdown, data);
             },
             error: function (xhr, status, error) {
@@ -260,7 +253,6 @@ $("#country_id").change(function () {
             }
         });
     } else {
-        var sitesDropdown = $("#sites_id");
         populateDropdown(sitesDropdown, []);
     }
 });
@@ -367,9 +359,10 @@ document.getElementById('btnShowForm').addEventListener('click', function (e) {
     btnHideForm.hidden = false;
     bsc_first.hidden = true;
     bsc_second.hidden = false;
+    keyInfo.hidden = true;
 
     clear_form.hidden = false;
-    $("#keyInfo").slideUp("slow");
+    $("#keyInfo").addClass("animate__animated animate__fadeInDown");
 
 });
 
@@ -384,7 +377,7 @@ document.getElementById('btnHideForm').addEventListener('click', function (e) {
     bsc_second.hidden = true;
 
     clear_form.hidden = true;
-    $("#keyInfo").slideDown("slow");
+    $("#Form_").addClass("animate__animated animate__fadeInUp");
 
     clearFormOnClick();
 });
@@ -398,11 +391,14 @@ var hideSiteDp = document.querySelector(".hide-site-dps");
 var hideClientDp = document.querySelector(".hide-client-dps");
 var hideCountryAndSiteDp = document.querySelector(".hide-countryAndsites-dps")
 
+
 document.getElementById("show-country-dp").addEventListener('click', function (e) {
     hideCountryDp.hidden = false;
     hideSiteDp.hidden = true;
     hideClientDp.hidden = true;
 
+    dropdownClear('GetClients', '#clients_id');
+    dropdownClear('GetSites', '#sites_id');
 });
 
 
@@ -411,17 +407,26 @@ document.getElementById("show-site-dp").addEventListener('click', function (e) {
     hideSiteDp.hidden = false;
     hideClientDp.hidden = true;
 
+    dropdownClear('GetCountries', '#country_id');
+    dropdownClear('GetClients', '#clients_id');
+
 });
 document.getElementById("show-client-dp").addEventListener('click', function (e) {
     hideCountryDp.hidden = true;
     hideSiteDp.hidden = true;
     hideClientDp.hidden = false;
+    dropdownClear('GetCountries', '#country_id');
+    dropdownClear('GetSites', '#sites_id');
 });
 
 document.getElementById("show-countryAndSite-dp").addEventListener('click', function (e) {
     hideCountryDp.hidden = false;
     hideSiteDp.hidden = false;
     hideClientDp.hidden = true;
+
+    dropdownClear('GetCountries', '#country_id');
+    dropdownClear('GetClients', '#clients_id');
+    dropdownClear('GetSites', '#sites_id');
 
     hideSiteDp.addClass('hideSiteDp');
 });
@@ -467,4 +472,7 @@ function enableSearchButton() {
     clientDropdown.on('change', checkDropdowns);
 
 }
+
+
+
 

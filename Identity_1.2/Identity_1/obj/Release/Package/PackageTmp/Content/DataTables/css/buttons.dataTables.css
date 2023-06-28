@@ -207,13 +207,13 @@ div.dt-button-collection {
   left: 0;
   width: 150px;
   margin-top: 3px;
-  padding: 8px 8px 4px 8px;
+  padding: 10px;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.4);
   background-color: white;
   overflow: hidden;
   z-index: 2002;
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   z-index: 2002;
   -webkit-column-gap: 8px;

@@ -9,6 +9,22 @@
     padding-right: 15px;
 }
 
+body::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+}
+
+body::-webkit-scrollbar-track {
+    background-color: transparent /* Color de fondo de la pista */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--fe_gray); /* Color del pulgar de la barra de desplazamiento */
+    border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color del pulgar de la barra de desplazamiento en el estado de hover */
+}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -20,7 +36,7 @@
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 textarea {
-    max-width: 280px;
+    max-width: 325px;
 }
 
 /* Generals */
@@ -73,7 +89,7 @@ div .bg-primary {
 }
 
 .full-height {
-    height: calc(100vh - 70px);
+    height: calc(100vh - 70px); /*En el servidor debe ser de 75px*/
     background-color: var(--fe_blue);
     background-image: url('images/FoundEver_cover.png');
     background-size: cover;
@@ -132,7 +148,7 @@ control-label {
 
 .dropdown-input {
     padding-left: 8px;
-    height: 2.4em !important;
+    height: 38px !important;
     border: 1px solid var(--fe_blue) !important;
     cursor: pointer;
     width: 24em;
@@ -236,23 +252,44 @@ option:hover {
 
 
 div.dt-buttons {
-    display: flex;
+    display: flex !important;
     gap: 1em;
     margin-bottom: 1em;
+    height: 1.5em !important;
+    align-items: center !important;
+    font-size: 13px;
+    font-weight: 600;
+    color:var(--fe_navy) !important;
 }
 
 
-.buttons-excel {
+.btns-table {
     border-radius: 23px !important;
     width: 8em;
-    background-color: green !important;
     border: 1px solid var(--fe_gray) !important;
     text-align: center;
+    width:11em;
 }
+
+.btn-excel{
+    background-color:green;
+    color:var(--fe_white) !important;
+}
+
+.btn-excel:hover {
+    background-color: green !important;
+    background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)) !important;
+}
+
+.btn-entries:hover {
+    background-color: var(--fe_white) !important;
+    background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)) !important;
+}
+
 
 #reset_search {
     width: 10em;
-    margin-left:1em;
+    margin-left: 1em;
 }
 
 .btn-edit {
@@ -352,7 +389,7 @@ div.dt-buttons {
 
 .btn_show_form:hover::before,
 .btn_show_form:focus::before {
-    transform: scale(1);
+   transform: scale(1);
 }
 
 .btns-search-cnt_first {
@@ -462,7 +499,7 @@ div.dt-buttons {
 
 
 .form_log input, .drop_login {
-    width: 36vh;
+    width: 34.5vh;
 }
 
 
@@ -480,7 +517,7 @@ div.dt-buttons {
 }
 
 #Form_ {
-    padding: 3em 0 1em 0;
+    padding: 3em 0 2em 0;
 }
 
 
@@ -574,7 +611,7 @@ div.dataTables_wrapper div.dataTables_filter input {
     margin-left: 0.5em;
     display: inline-block;
     width: 35em !important;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 13px;
     height: 2em;
     border: 1px solid var(--fe_gray);
@@ -583,6 +620,11 @@ div.dataTables_wrapper div.dataTables_filter input {
 div.dataTables_wrapper div.dataTables_filter input:focus-visible{
     border:none !important;
 }
+
+.form-control:focus {
+    box-shadow: 0 0 0 2px rgba(0, 140, 186, 0.25);
+}
+
 
 [type="search"] {
     outline-offset: 0;
@@ -749,8 +791,11 @@ dl div {
     color: var(--fe_navy) !important;
 }
 
-.hide-country-dps, .hide-site-dps, .hide-client-dps{
-    margin-top:-2em;
+.hide-country-dps, .hide-site-dps, .hide-client-dps {
+    margin-top: -24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
@@ -765,16 +810,30 @@ dl div {
 }
 
 
+.form-group-inputs{
+    display:flex;
+    gap:4em;
+}
+
+
+
 /* -------  IMPORTANT: Mediaquerys keep it at the bottom pls ------- */
 /* Media query for the scroll */
-
-
 @media only screen and (min-width: 1200px) {
     .form_log input, .drop_login {
         width: 31vh;
     }
 }
 
+@media screen and (min-width:700px) and (max-width:1200px) and (orientation : portrait) {
+    .form_log input, .drop_login {
+        width: 16.5vh;
+    }
+
+    .btn_show_form::before {
+        width: 24vh;
+    }
+}
 
 @media screen and (min-width:780px) and (max-width:1200px) {
 

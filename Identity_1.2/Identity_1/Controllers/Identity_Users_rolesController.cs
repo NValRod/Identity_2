@@ -23,7 +23,7 @@ namespace Identity_1.Controllers
 
             if ( dataUser.IdRol != 1)
             {
-                return RedirectToAction("GetProjectCodes", "Home");
+                return RedirectToAction("IdentityManagement", "Home");
             }
             return View(identity_Users_roles.ToList());
         }
@@ -37,7 +37,7 @@ namespace Identity_1.Controllers
 
             if (dataUser.IdRol != 1)
             {
-                return RedirectToAction("GetProjectCodes", "Home");
+                return RedirectToAction("IdentityManagement", "Home");
             }
             return View();
         }
@@ -68,7 +68,7 @@ namespace Identity_1.Controllers
 
             if (dataUser.IdRol != 1)
             {
-                return RedirectToAction("GetProjectCodes", "Home");
+                return RedirectToAction("IdentityManagement", "Home");
             }
             if (id == null)
             {
@@ -106,7 +106,7 @@ namespace Identity_1.Controllers
 
             if (dataUser.IdRol != 1)
             {
-                return RedirectToAction("GetProjectCodes", "Home");
+                return RedirectToAction("IdentityManagement", "Home");
             }
             if (id == null)
             {
